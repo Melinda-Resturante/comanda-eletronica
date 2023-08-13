@@ -52,6 +52,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .sidebar .nav-links li i {
@@ -177,7 +178,6 @@
 .sidebar .profile-details .job {
     font-size: 12px;
 }
-
 
 .sidebar .profile-details .bx-log-out {
     cursor: pointer;

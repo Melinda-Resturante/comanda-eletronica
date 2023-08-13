@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import "./Sidebar.css";
 
@@ -6,7 +6,7 @@ import LogoIMG from "../../images/nome melinda.png";
 
 function Sidebar() {
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 512);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -16,6 +16,18 @@ function Sidebar() {
     const arrowParent = e.currentTarget.parentElement.parentElement;
     arrowParent.classList.toggle('showMenu');
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSidebarOpen(window.innerWidth > 512);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className={`sidebar ${isSidebarOpen ? '' : 'close'}`}>
