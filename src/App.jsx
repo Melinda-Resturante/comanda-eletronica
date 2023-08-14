@@ -1,3 +1,5 @@
+import { Outlet } from 'react-router-dom';
+
 import './App.css'
 import Sidebar from './assets/components/Sidebar/Sidebar';
 
@@ -7,7 +9,7 @@ function App() {
       <Sidebar />
       <section className="home-section">
         <div className="home-content">
-          <h1>ola mundo</h1>
+          <Outlet/>
         </div>
       </section>
     </div>
