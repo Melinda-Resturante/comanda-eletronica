@@ -1,0 +1,77 @@
+/* 
+    --white-color
+    --red-color,
+    --darkBlue-color,
+    --black-color
+
+*/
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-color);
+}
+
+
+.form-login {
+    display: flex;
+    padding: 3em 3.5em;
+    border-radius: 10px;
+    background-color: var(--red-color);
+    color: var(--white-color);
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-login > figure {
+    width: 250px;
+    height: 120px;
+    text-align: center;
+}
+
+.form-login > figure > img {
+    width: 100px;
+}
+
+.form-login > div {
+    display: flex;
+    flex-direction: column;
+    padding: .3em;
+}
+
+.form-login > div > label {
+    font-size: 1.5em;
+    padding: .1em;
+}
+
+.form-login > div > input {
+    font-size: 1.3em;
+    border: none;
+    outline: none;
+    border: 2px solid var(--yellow-color);
+    border-radius: 5px;
+    margin-bottom: .5em;
+}
+
+
+.form-login > button {
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    padding: .4em;
+    background-color: var(--yellow-color);
+    color: var(--red-color);
+    transition: .5s all;
+}
+
+.form-login > button:hover {
+    background-color: var(--white-color);
+
+}
+
+
+
+
