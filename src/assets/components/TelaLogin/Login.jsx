@@ -1,5 +1,5 @@
 import "./Login.css"
-import logo from "../../assets/images/logoRedondaMelinda.png"
+import logo from "../../images/logoRedondaMelinda.png"
 
 
 function Login() {

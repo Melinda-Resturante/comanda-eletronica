@@ -5,7 +5,7 @@ import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import TelaLogin from './assets/components/TelaLogin/TelaLogin.jsx';
+import TelaLogin from './assets/components/TelaLogin/Login.jsx';
 import TelaAtendente from './assets/components/TelaAtendente/TelaAtendente.jsx';
 import TelaCaixa from './assets/components/TelaCaixa/TelaCaixa.jsx';
 
