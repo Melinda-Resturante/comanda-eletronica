@@ -1,0 +1,23 @@
+<<<<<<< HEAD
+=======
+.home-section{
+  position: relative;
+  background: var(--bg-color);
+  height: 100vh;
+  left: 260px;
+  width: calc(100% - 260px);
+  transition: all 0.5s ease;
+  padding-left: 30px;
+}
+.sidebar.close ~ .home-section{
+  left: 78px;
+  width: calc(100% - 78px);
+}
+.home-section .home-content{
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+  
+>>>>>>> 7c3fe3b1eb1b4ee754ff3ef4b366635ffe310f57
