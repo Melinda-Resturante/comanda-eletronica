@@ -9,9 +9,9 @@
 
 .form-login {
     display: flex;
-    padding: 3em 3.5em;
-    border-radius: 10px;
-    background-color: var(--detail-color2);
+    padding: 5em 3.5em;
+    border-radius: 20px;
+    background-color: #490606;
     color: var(--text-color);
     flex-direction: column;
     justify-content: center;
@@ -34,29 +34,31 @@
 }
 
 .form-login > div > label {
-    font-size: 1.5em;
-    padding: .1em;
+    font-size: 1.3em;
+    padding-left: 8px;
+    padding-bottom: 3px;
 }
 
 .form-login > div > input {
-    font-size: 1.3em;
+    font-size: 1rem;
     border: none;
     outline: none;
-    border: 2px solid var(--detail-color);
-    border-radius: 5px;
+    border-radius: 30px;
+    padding: 5px 10px;
     margin-bottom: .5em;
 }
 
 
 .form-login > button {
     font-size: 1.2em;
-    border-radius: 5px;
+    border-radius: 30px;
     border: none;
     cursor: pointer;
     padding: .4em;
     background-color: var(--detail-color);
-    color: var(--detail-color2);
+    color: var(--bg-color);
     transition: .5s all;
+    margin-top: 25px;
 }
 
 .form-login > button:hover {
