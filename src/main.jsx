@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     element: <App/>,
     children: [
       {
-        path: "atentende",
+        path: "atendente",
         element: <TelaAtendente/>
       },
       {

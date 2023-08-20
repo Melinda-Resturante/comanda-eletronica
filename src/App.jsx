@@ -8,9 +8,7 @@ function App() {
     <div>
       <Sidebar />
       <section className="home-section">
-        <div className="home-content">
-          <Outlet/>
-        </div>
+          <Outlet/>    
       </section>
     </div>
   )

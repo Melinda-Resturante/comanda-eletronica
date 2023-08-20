@@ -2,7 +2,9 @@ import React from 'react'
 
 function TelaCaixa() {
   return (
-    <div>TelaCaixa</div>
+    <div>
+        <h2>Tela Caixa</h2>
+    </div>
   )
 }
 

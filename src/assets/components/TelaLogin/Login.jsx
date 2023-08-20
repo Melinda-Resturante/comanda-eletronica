@@ -7,7 +7,7 @@ function Login() {
     <div className="container">
         <form action="" className="form-login">
             <figure>
-                <img src={logo}  alt="" />
+                <img src={logo} alt="logo Melinda" />
             </figure>
             <div>
                 <label htmlFor="">Login</label>

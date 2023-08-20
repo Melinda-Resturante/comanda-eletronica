@@ -151,7 +151,7 @@
     align-items: center;
     justify-content: space-between;
     background: var(--sub-bg-color);
-    padding: 8px 35px 8px 8px;
+    padding: 8px 35px 8px 0;
 }
 
 .sidebar .profile-details .profile-content {
