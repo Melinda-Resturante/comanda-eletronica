@@ -80,7 +80,7 @@ const TelaAtendente = () => {
       state: 'busy'
     },
 ]
-    
+
   return (
     <>
          <nav className="navigation">
