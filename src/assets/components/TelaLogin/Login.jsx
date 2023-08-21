@@ -10,11 +10,11 @@ function Login() {
                 <img src={logo} alt="logo Melinda" />
             </figure>
             <div>
-                <label htmlFor="">Login</label>
+                <label htmlFor="">Registro: </label>
                 <input type="text" />
             </div>
             <div>
-                <label htmlFor="">Senha</label>
+                <label htmlFor="">Senha: </label>
                 <input type="password" />
             </div>
             <button>Entrar</button>

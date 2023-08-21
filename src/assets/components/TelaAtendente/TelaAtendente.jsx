@@ -14,7 +14,7 @@ const TelaAtendente = () => {
     return data;
   };
 
-  const fakeDataCard = generateFakeData(50);
+  const fakeDataCard = generateFakeData(300);
 
   return (
     <>

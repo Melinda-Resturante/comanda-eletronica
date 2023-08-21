@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import "./Sidebar.css";
 
@@ -93,6 +94,17 @@ function Sidebar() {
           <li><a className='link_name' href="#">Estoque</a></li>
         </ul>
       </li>
+
+      <li>
+        <Link to="/funcionarios">
+        <i class='bx bxs-user-pin'></i>
+          <span className="link_name">Funcionários</span>
+        </Link>
+        <ul className='sub-menu blank'>
+          <li><a className='link_name' href="#">Funcionários</a></li>
+        </ul>
+      </li>
+
       <li>
         <div className="profile-details">
           <div className="profile-content">
