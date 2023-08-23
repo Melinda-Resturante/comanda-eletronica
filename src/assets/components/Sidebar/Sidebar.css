@@ -148,10 +148,16 @@
     position: fixed;
     bottom: 0;
     display: flex;
+    width: 260px;
     align-items: center;
     justify-content: space-between;
     background: var(--sub-bg-color);
     padding: 8px 35px 8px 0;
+    transition:  all 0.4s ease;
+}
+
+.sidebar.close .profile-details {
+    width: 78px;
 }
 
 .sidebar .profile-details .profile-content {
@@ -173,6 +179,7 @@
     color: var(--text-color);
     font-size: 18px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .sidebar .profile-details .job {

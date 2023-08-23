@@ -8,6 +8,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import TelaLogin from './assets/components/TelaLogin/Login.jsx';
 import TelaAtendente from './assets/components/TelaAtendente/TelaAtendente.jsx';
 import TelaCaixa from './assets/components/TelaCaixa/TelaCaixa.jsx';
+import TelaGerente from './assets/components/TelaGerente/TelaGerente.jsx';
+import TelaEstoquista from './assets/components/TelaEstoquista/TelaEstoquista.jsx';
 
 import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx';
 
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: "caixa",
         element: <TelaCaixa/>
+      },
+      {
+        path: "gerente",
+        element: <TelaGerente/>
+      },
+      {
+        path: "estoquista",
+        element: <TelaEstoquista/>
       },
     ],
   },

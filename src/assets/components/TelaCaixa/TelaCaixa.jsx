@@ -8,4 +8,4 @@ function TelaCaixa() {
   )
 }
 
-export default TelaCaixa
+export default TelaCaixa;
