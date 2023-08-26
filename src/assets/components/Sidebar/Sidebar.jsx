@@ -97,7 +97,7 @@ function Sidebar() {
 
       <li>
         <Link to="/funcionarios">
-        <i class='bx bxs-user-pin'></i>
+        <i className='bx bxs-user-pin'></i>
           <span className="link_name">Funcionários</span>
         </Link>
         <ul className='sub-menu blank'>

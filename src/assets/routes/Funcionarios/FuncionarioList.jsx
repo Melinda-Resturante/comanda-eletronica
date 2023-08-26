@@ -1,16 +1,27 @@
-import React from 'react';
+import useFuncionarioStore from "../../../store/funcionario";
 
-const FuncionarioList = ({ funcionarios, onDelete, onEdit }) => {
+const FuncionarioList = ({ editModal }) => {
+  const funcionarios = useFuncionarioStore(state => state.funcionarios)
+  const deleteFuncionario = useFuncionarioStore(state => state.deleteFuncionario)
+  const setFuncionarioEdit = useFuncionarioStore(state => state.setFuncionarioEdit)
+
+
+  const handleEdit = (funcionario, index) => {
+    editModal()
+    setFuncionarioEdit({...funcionario, index})
+  }
   return (
-    <ul className='func'>
-      {funcionarios.map((funcionario, index) => (
-        <li className='listFunc' key={index}>
-          {funcionario.registro} - {funcionario.nome} - {funcionario.funcao}
-          <button className='btnFunc' onClick={() => onDelete(index)}>Excluir</button>
-          <button className='btnFunc' onClick={() => onEdit(index)}>Editar</button>
-        </li>
+ 
+    <div>
+        {funcionarios?.map((funcionario, index) => (
+          <div key={index}>
+            <p > {funcionario.register} - {funcionario.name} - {funcionario.jobFunction} </p>
+            <button onClick={() => handleEdit(funcionario, index)}>Editar</button>
+            <button onClick={() => deleteFuncionario(index)}>Deletar</button>
+          </div>
+      
       ))}
-    </ul>
+    </div>
   );
 };
 

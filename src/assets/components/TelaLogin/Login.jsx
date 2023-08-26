@@ -11,11 +11,11 @@ function Login() {
             </figure>
             <div>
                 <label htmlFor="">Registro: </label>
-                <input type="text" />
+                <input type="text" placeholder="Registro"/>
             </div>
             <div>
                 <label htmlFor="">Senha: </label>
-                <input type="password" />
+                <input type="password" placeholder="Senha"/>
             </div>
             <button>Entrar</button>
         </form>
