@@ -14,10 +14,13 @@ const FuncionarioList = ({ editModal }) => {
  
     <div>
         {funcionarios?.map((funcionario, index) => (
-          <div key={index}>
+          <div key={index} className="listFunc ">
             <p > {funcionario.register} - {funcionario.name} - {funcionario.jobFunction} </p>
-            <button onClick={() => handleEdit(funcionario, index)}>Editar</button>
-            <button onClick={() => deleteFuncionario(index)}>Deletar</button>
+            <div className="btns">
+              <button onClick={() => handleEdit(funcionario, index)} className="btnEdit">Editar</button>
+              <button onClick={() => deleteFuncionario(index)} className="btnDelete">Deletar</button>
+            </div>
+           
           </div>
       
       ))}

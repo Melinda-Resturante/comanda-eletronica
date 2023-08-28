@@ -34,7 +34,7 @@ function Funcionarios() {
            
     
       </div>
-      <h1>Funcionários</h1>
+      <h1 className='titleh1'>Funcionários</h1>
       <button className='btnFunc' onClick={openAddModal}>Adicionar Funcionário</button>
      
 
