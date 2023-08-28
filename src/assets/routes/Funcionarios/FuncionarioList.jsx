@@ -19,6 +19,7 @@ const FuncionarioList = ({ editModal }) => {
             <div className="btns">
               <button onClick={() => handleEdit(funcionario, index)} className="btnEdit">Editar</button>
               <button onClick={() => deleteFuncionario(index)} className="btnDelete">Deletar</button>
+              <button  className="btnProfile">Ver Perfil</button>
             </div>
            
           </div>

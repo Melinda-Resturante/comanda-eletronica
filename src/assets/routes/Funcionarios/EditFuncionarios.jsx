@@ -21,6 +21,7 @@ function EditFuncionarios({ onClose }) {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [selectedFunctions, setSelectedFunctions] = useState([]);
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         setRegister(funcionarioEdit.register);
@@ -50,28 +51,74 @@ function EditFuncionarios({ onClose }) {
         }
     }
 
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (!name) {
+            newErrors.name = "Campo obrigatório";
+        }
+        if (!lastName) {
+            newErrors.lastName = "Campo obrigatório";
+        }
+        if (!cpf) {
+            newErrors.cpf = "Campo obrigatório";
+        }
+        if (!birthDate) {
+            newErrors.birthDate = "Campo obrigatório";
+        }
+        if (!phone1) {
+            newErrors.phone1 = "Campo obrigatório";
+        }
+        if (!street) {
+            newErrors.street = "Campo obrigatório";
+        }
+        if (!number) {
+            newErrors.number = "Campo obrigatório";
+        }
+        if (!cep) {
+            newErrors.cep = "Campo obrigatório";
+        }
+        if (!district) {
+            newErrors.district = "Campo obrigatório";
+        }
+        if (!city) {
+            newErrors.city = "Campo obrigatório";
+        }
+        if (!state) {
+            newErrors.state = "Campo obrigatório";
+        }
+        if (selectedFunctions.length === 0) {
+            newErrors.selectedFunctions = "Selecione pelo menos uma função";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSave = () => {
-        const updatedFuncionario = {
-            ...funcionarioEdit,
-            register,
-            name,
-            lastName,
-            cpf,
-            birthDate,
-            phone1,
-            phone2,
-            street,
-            number,
-            cep,
-            district,
-            city,
-            state,
-            password,
-            email,
-            jobFunction: selectedFunctions.join(", "),
-        };
-        updateFuncionario(updatedFuncionario);
-        onClose();
+        if (validateForm()) {
+            const updatedFuncionario = {
+                ...funcionarioEdit,
+                register,
+                name,
+                lastName,
+                cpf,
+                birthDate,
+                phone1,
+                phone2,
+                street,
+                number,
+                cep,
+                district,
+                city,
+                state,
+                password,
+                email,
+                jobFunction: selectedFunctions.join(", "),
+            };
+            updateFuncionario(updatedFuncionario);
+            onClose();
+        }
     }
 
     return (
@@ -85,8 +132,10 @@ function EditFuncionarios({ onClose }) {
                     type="text" 
                     name="register" 
                     value={register} 
-                    onChange={e => setRegister(e.target.value)} />
+                    onChange={e => setRegister(e.target.value)} 
+                    disabled/>
             </div>
+
             <div className="input-group">
                 <label className="label">Nome</label>
                 <input 
@@ -95,6 +144,8 @@ function EditFuncionarios({ onClose }) {
                     value={name} 
                     onChange={e => setName(e.target.value)} />
             </div>
+            {errors.name && <p className="error-message">{errors.name}</p>}
+
             <div className="input-group">
                 <label className="label">Sobrenome</label>
                 <input 
@@ -103,6 +154,8 @@ function EditFuncionarios({ onClose }) {
                     value={lastName} 
                     onChange={e => setLastName(e.target.value)} />
             </div>
+            {errors.lastName && <p className="error-message">{errors.lastName}</p>}
+
             <div className="input-group">
                 <label className="label">CPF</label>
                 <input 
@@ -111,6 +164,8 @@ function EditFuncionarios({ onClose }) {
                     value={cpf} 
                     onChange={e => setCpf(e.target.value)} />
             </div>
+            {errors.cpf && <p className="error-message">{errors.cpf}</p>}
+
             <div className="input-group">
                 <label className="label">Data de Nascimento</label>
                 <input 
@@ -119,6 +174,8 @@ function EditFuncionarios({ onClose }) {
                     value={birthDate} 
                     onChange={e => setBirthDate(e.target.value)} />
             </div>
+            {errors.birthDate && <p className="error-message">{errors.birthDate}</p>}
+
             <div className="input-group">
                 <label className="label">Telefone 1</label>
                 <input 
@@ -127,6 +184,8 @@ function EditFuncionarios({ onClose }) {
                     value={phone1} 
                     onChange={e => setPhone1(e.target.value)} />
             </div>
+            {errors.phone1 && <p className="error-message">{errors.phone1}</p>}
+
             <div className="input-group">
                 <label className="label">Telefone 2</label>
                 <input 
@@ -143,6 +202,8 @@ function EditFuncionarios({ onClose }) {
                     value={street} 
                     onChange={e => setStreet(e.target.value)} />
             </div>
+            {errors.street && <p className="error-message">{errors.street}</p>}
+
             <div className="input-group">
                 <label className="label">Número</label>
                 <input 
@@ -151,6 +212,8 @@ function EditFuncionarios({ onClose }) {
                     value={number} 
                     onChange={e => setNumber(e.target.value)} />
             </div>
+            {errors.number && <p className="error-message">{errors.number}</p>}
+
             <div className="input-group">
                 <label className="label">CEP</label>
                 <input 
@@ -159,6 +222,8 @@ function EditFuncionarios({ onClose }) {
                     value={cep} 
                     onChange={e => setCep(e.target.value)} />
             </div>
+            {errors.cep && <p className="error-message">{errors.cep}</p>}
+
             <div className="input-group">
                 <label className="label">Bairro</label>
                 <input 
@@ -167,6 +232,8 @@ function EditFuncionarios({ onClose }) {
                     value={district} 
                     onChange={e => setDistrict(e.target.value)} />
             </div>
+            {errors.district && <p className="error-message">{errors.district}</p>}
+
             <div className="input-group">
                 <label className="label">Cidade</label>
                 <input 
@@ -175,6 +242,8 @@ function EditFuncionarios({ onClose }) {
                     value={city} 
                     onChange={e => setCity(e.target.value)} />
             </div>
+            {errors.city && <p className="error-message">{errors.city}</p>}
+
             <div className="input-group">
                 <label className="label">Estado</label>
                 <input 
@@ -183,6 +252,8 @@ function EditFuncionarios({ onClose }) {
                     value={state} 
                     onChange={e => setState(e.target.value)} />
             </div>
+            {errors.state && <p className="error-message">{errors.state}</p>}
+
             <div className="input-group">
                 <label className="label">Senha</label>
                 <input 
@@ -199,53 +270,56 @@ function EditFuncionarios({ onClose }) {
                     value={email} 
                     onChange={e => setEmail(e.target.value)} />
             </div>
+
             <div className="checkboxes">
-            <label htmlFor="" className="lbFuncao">Função</label>
-            <div className="function-checkboxes">
-              <label>
-                <input
-                  type="checkbox"
-                  value="Atendente"
-                  checked={selectedFunctions.includes("Atendente")}
-                  onChange={handleFunctionChange}
-                />
-                Atendente
-              </label>
-            </div>
-            <div className="function-checkboxes">
-              <label>
-                <input
-                  type="checkbox"
-                  value="Caixa"
-                  checked={selectedFunctions.includes("Caixa")}
-                  onChange={handleFunctionChange}
-                />
-                Caixa
-              </label>
-            </div>
-            <div className="function-checkboxes">
-              <label>
-                <input
-                  type="checkbox"
-                  value="Estoquista"
-                  checked={selectedFunctions.includes("Estoquista")}
-                  onChange={handleFunctionChange}
-                />
-                Estoquista
-              </label>
-            </div>
-            <div className="function-checkboxes">
-              <label>
-                <input
-                  type="checkbox"
-                  value="Gerente"
-                  checked={selectedFunctions.includes("Gerente")}
-                  onChange={handleFunctionChange}
-                />
-                Gerente
-              </label>
-            </div>
+                <label htmlFor="" className="lbFuncao">Função</label>
+                <div className="function-checkboxes">
+                    <label>
+                        <input
+                        type="checkbox"
+                        value="Atendente"
+                        checked={selectedFunctions.includes("Atendente")}
+                        onChange={handleFunctionChange}
+                        />
+                        Atendente
+                    </label>
+                </div>
+                <div className="function-checkboxes">
+                    <label>
+                        <input
+                        type="checkbox"
+                        value="Caixa"
+                        checked={selectedFunctions.includes("Caixa")}
+                        onChange={handleFunctionChange}
+                        />
+                        Caixa
+                    </label>
+                </div>
+                <div className="function-checkboxes">
+                    <label>
+                        <input
+                        type="checkbox"
+                        value="Estoquista"
+                        checked={selectedFunctions.includes("Estoquista")}
+                        onChange={handleFunctionChange}
+                        />
+                        Estoquista
+                    </label>
+                </div>
+                <div className="function-checkboxes">
+                    <label>
+                        <input
+                        type="checkbox"
+                        value="Gerente"
+                        checked={selectedFunctions.includes("Gerente")}
+                        onChange={handleFunctionChange}
+                        />
+                        Gerente
+                    </label>
+                </div>
           </div>
+            {errors.selectedFunctions && <p className="error-message">{errors.selectedFunctions}</p>}
+
             <button onClick={handleSave} className="submit-button">Editar Funcionário</button>
         </div> 
         </div>
