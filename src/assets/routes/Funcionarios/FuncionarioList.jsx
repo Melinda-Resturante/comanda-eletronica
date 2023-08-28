@@ -10,15 +10,23 @@ const FuncionarioList = ({ editModal }) => {
     editModal()
     setFuncionarioEdit({...funcionario, index})
   }
+
+  const handleDelete = (index) => {
+    const shouldDelete = window.confirm("Tem certeza de que deseja deletar este funcionário?");
+    if (shouldDelete) {
+      deleteFuncionario(index);
+    }
+  };
+
   return (
  
     <div>
         {funcionarios?.map((funcionario, index) => (
           <div key={index} className="listFunc ">
-            <p > {funcionario.register} - {funcionario.name} - {funcionario.jobFunction} </p>
+            <p > {funcionario.register} - {funcionario.name} {funcionario.lastName} - {funcionario.jobFunction} </p>
             <div className="btns">
               <button onClick={() => handleEdit(funcionario, index)} className="btnEdit">Editar</button>
-              <button onClick={() => deleteFuncionario(index)} className="btnDelete">Deletar</button>
+              <button onClick={() => handleDelete(index)} className="btnDelete">Deletar</button>
               <button  className="btnProfile">Ver Perfil</button>
             </div>
            
