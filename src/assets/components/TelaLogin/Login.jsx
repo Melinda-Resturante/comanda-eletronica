@@ -1,11 +1,19 @@
 import "./Login.css"
 import logo from "../../images/logoRedondaMelinda.png"
+import { useEffect, useState } from "react"
 
 
 function Login() {
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:4000/auth/login').then(resp => setData(resp.json())).catch(e => console.log(e.error))
+        console.log(data)
+    }, [])
+
   return (
     <div className="container">
-        <form action="" className="form-login">
+        <form action="POST" className="form-login">
             <figure>
                 <img src={logo} alt="logo Melinda" />
             </figure>
