@@ -1,6 +1,10 @@
+import { useEffect, useState } from 'react';
 import './TelaAtendente.css';
+import Modal from '../Modal/Modal';
 
 const TelaAtendente = () => {
+  const [open, setOpen] = useState(false)
+  const [fakeData, setFakeData] = useState('')
 
   const generateFakeData = (count) => {
     const data = [];
@@ -14,10 +18,25 @@ const TelaAtendente = () => {
     return data;
   };
 
+
+
   const fakeDataCard = generateFakeData(300);
+
+  const handleOpenModal = (id, state, task) => {
+    const data = {
+      id: id,
+      state: state,
+      task: task
+    }
+
+    setFakeData(data)
+    setOpen(!open)
+  }
 
   return (
     <>
+    <Modal isOpen={open} setOpen={setOpen} data={fakeData}/>
+
       <nav className="navigation">
         <div className="nav-search">
           <label htmlFor="">Buscar: </label>
@@ -27,7 +46,7 @@ const TelaAtendente = () => {
 
       <main className='main-container'>
         {fakeDataCard.map((card) => (
-          <div className={`card ${card.state}`} key={card.id}>
+          <div className={`card ${card.state}`} key={card.id} onClick={() => handleOpenModal(card.id, card.state, card.task)}>
             <h1> {card.id} </h1>
             <p> {card.task} </p>
           </div>
