@@ -35,7 +35,6 @@ function AddFuncionarios({ isClose }) {
       const district = e.target.district.value;
       const city = e.target.city.value;
       const state = e.target.state.value;
-      const password = e.target.password.value;
       const email = e.target.email.value;
   
       addFuncionario({
@@ -52,7 +51,6 @@ function AddFuncionarios({ isClose }) {
         district,
         city,
         state,
-        password,
         email,
         jobFunction: selectedFunctions.join(", "),
       });
@@ -187,11 +185,6 @@ function AddFuncionarios({ isClose }) {
           <div className="input-group">
             <label htmlFor="" className="label">E-mail</label>
             <input type="email" placeholder="E-mail" name="email" />
-          </div>
-
-          <div className="input-group">
-            <label htmlFor="" className="label">Senha</label>
-            <input type="password" placeholder="Senha" name="password" />
           </div>
 
           <div className="checkboxes">

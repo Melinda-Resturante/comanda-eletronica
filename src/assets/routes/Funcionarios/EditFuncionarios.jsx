@@ -18,7 +18,6 @@ function EditFuncionarios({ onClose }) {
     const [district, setDistrict] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
-    const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [selectedFunctions, setSelectedFunctions] = useState([]);
     const [errors, setErrors] = useState({});
@@ -37,7 +36,6 @@ function EditFuncionarios({ onClose }) {
         setDistrict(funcionarioEdit.district);
         setCity(funcionarioEdit.city);
         setState(funcionarioEdit.state);
-        setPassword(funcionarioEdit.password);
         setEmail(funcionarioEdit.email);
         setSelectedFunctions(funcionarioEdit.jobFunction.split(", "));
     }, [funcionarioEdit]);
@@ -112,7 +110,6 @@ function EditFuncionarios({ onClose }) {
                 district,
                 city,
                 state,
-                password,
                 email,
                 jobFunction: selectedFunctions.join(", "),
             };
@@ -254,14 +251,6 @@ function EditFuncionarios({ onClose }) {
             </div>
             {errors.state && <p className="error-message">{errors.state}</p>}
 
-            <div className="input-group">
-                <label className="label">Senha</label>
-                <input 
-                    type="password" 
-                    name="password" 
-                    value={password} 
-                    onChange={e => setPassword(e.target.value)} />
-            </div>
             <div className="input-group">
                 <label className="label">E-mail</label>
                 <input 

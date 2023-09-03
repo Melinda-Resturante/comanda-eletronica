@@ -86,7 +86,7 @@ function Sidebar() {
       </li>
 
       <li>
-        <a href="#">
+        <a href="estoquista">
         <i className='bx bx-box'></i>
           <span className="link_name">Estoque</span>
         </a>
