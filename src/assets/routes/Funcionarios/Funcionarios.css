@@ -24,10 +24,19 @@
   margin-left: 10px;
 }
 
+
 .employee-form {
   width: 100%;
   margin: 0 auto;
   color: var(--bg-color);
+}
+
+.formSenha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .fieldset {
@@ -41,10 +50,13 @@
   margin-bottom: 20px;
 }
 
-
 .titleH2 {
   color: var(--bg-color);
   padding-top: 10px;
+}
+
+.texto {
+  color: var(--bg-color);
 }
 
 .input-group {

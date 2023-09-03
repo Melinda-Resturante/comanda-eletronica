@@ -1,16 +1,22 @@
+import React, { useState } from 'react';
+import SenhaModal from './SenhaModal .jsx'; 
+import PerfilModal from './PerfilModal .jsx';
 import useFuncionarioStore from "../../../store/funcionario";
 
 const FuncionarioList = ({ editModal }) => {
-  const funcionarios = useFuncionarioStore(state => state.funcionarios)
-  const deleteFuncionario = useFuncionarioStore(state => state.deleteFuncionario)
-  const setFuncionarioEdit = useFuncionarioStore(state => state.setFuncionarioEdit)
-  const senhaModalOpen = useFuncionarioStore((state) => state.senhaModalOpen);
+  const funcionarios = useFuncionarioStore((state) => state.funcionarios);
+  const deleteFuncionario = useFuncionarioStore((state) => state.deleteFuncionario);
+  const setFuncionarioEdit = useFuncionarioStore((state) => state.setFuncionarioEdit);
   const senha = useFuncionarioStore((state) => state.senha);
+  const [perfilModalOpen, setPerfilModalOpen] = useState(false);
+  const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
+
+  const [senhaModalOpen, setSenhaModalOpen] = useState(false);
 
   const handleEdit = (funcionario, index) => {
-    editModal()
-    setFuncionarioEdit({...funcionario, index})
-  }
+    editModal();
+    setFuncionarioEdit({ ...funcionario, index });
+  };
 
   const handleDelete = (index) => {
     const shouldDelete = window.confirm("Tem certeza de que deseja deletar este funcionário?");
@@ -19,51 +25,50 @@ const FuncionarioList = ({ editModal }) => {
     }
   };
 
-   const handleCadastrarSenhaClick = () => {
-    // Abra o modal de senha
-    useFuncionarioStore.setState({ senhaModalOpen: true });
+  const handleCadastrarSenhaClick = () => {
+    setSenhaModalOpen(true);
   };
 
-  const handleSalvarSenha = () => {
-    useFuncionarioStore.getState().saveSenha(senha);
+  const handleSalvarSenha = (novaSenha) => {
+    useFuncionarioStore.getState().saveSenha(novaSenha);
+    setSenhaModalOpen(false);
   };
 
   return (
- 
     <div>
-        {funcionarios?.map((funcionario, index) => (
-          <div key={index} className="listFunc ">
-            <p > {funcionario.register} - {funcionario.name} {funcionario.lastName} - {funcionario.jobFunction} </p>
-            <div className="btns">
-              <button onClick={() => handleEdit(funcionario, index)} className="btnEdit">Editar</button>
-              <button onClick={() => handleDelete(index)} className="btnDelete">Deletar</button>
-              <button  className="btnProfile">Ver Perfil</button>
-              <button className="btnSenha" onClick={handleCadastrarSenhaClick}>Cadastrar senha</button>
-            </div>
-           
-          </div>
-      
-      ))}
-
-      {/* Modal de senha */}
-      {senhaModalOpen && (
-        <div> 
-          <h2>Cadastrar Senha</h2>
-          <input
-            className="input-group senha"
-            type="password"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => useFuncionarioStore.setState({ senha: e.target.value })}
-          />
-          <div className="btns dSenha">
-            <button onClick={handleSalvarSenha} className="btnSalvar">Salvar</button>
-            <button onClick={() => useFuncionarioStore.setState({ senhaModalOpen: false })} className="btnCalcel">Cancelar</button>
+      {funcionarios?.map((funcionario, index) => (
+        <div key={index} className="listFunc">
+          <p>
+            {funcionario.register} - {funcionario.name} {funcionario.lastName} - {funcionario.jobFunction}
+          </p>
+          <div className="btns">
+            <button onClick={() => handleEdit(funcionario, index)} className="btnEdit">
+              Editar
+            </button>
+            <button onClick={() => handleDelete(index)} className="btnDelete">
+              Deletar
+            </button>
+            <button className="btnProfile" onClick={() => {setFuncionarioSelecionado(funcionario);setPerfilModalOpen(true);}}>Ver Perfil</button>
+            <button className="btnSenha" onClick={handleCadastrarSenhaClick}>
+              Cadastrar senha
+            </button>
           </div>
         </div>
-      )}
+      ))}
+
+      <SenhaModal
+        isOpen={senhaModalOpen}
+        onClose={() => setSenhaModalOpen(false)} 
+        onSave={handleSalvarSenha} 
+        senha={senha}
+      />
+
+      <PerfilModal
+        isOpen={perfilModalOpen}
+        onClose={() => setPerfilModalOpen(false)}
+        funcionario={funcionarioSelecionado}
+      />
     </div>
   );
 };
-
 export default FuncionarioList;

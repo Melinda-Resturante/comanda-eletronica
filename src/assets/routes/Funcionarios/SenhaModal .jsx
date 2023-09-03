@@ -16,20 +16,22 @@ const SenhaModal = ({ isOpen, onClose, onSave }) => {
       onRequestClose={onClose}
       className="modal"
     >
-      <h2>Cadastrar Senha</h2>
-      <input
-        type="password"
-        placeholder="Senha"
-        value={senha}
-        onChange={(e) => setSenha(e.target.value)}
-      />
-      <button onClick={handleSalvarSenhaClick}>Salvar</button>
-      <button onClick={onClose}>Cancelar</button>
+      <div className='employee-form formSenha'>
 
-      
+          <h2 className='titleH2'>Cadastrar Senha</h2>
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            className='input-group'
+          />
+          <div className='btns dSenha'>
+            <button onClick={handleSalvarSenhaClick} className='btnSalvar'>Salvar</button>
+            <button onClick={onClose} className='btnCalcel'>Cancelar</button>
+          </div>
+      </div>
     </Modal>
-
-    
   );
 };
 

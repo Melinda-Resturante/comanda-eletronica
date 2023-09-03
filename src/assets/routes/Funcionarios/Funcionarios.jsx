@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import FuncionarioList from './FuncionarioList';
 import Modal from './Modal';
 import "./Funcionarios.css"
-import useFuncionarioStore from '../../../store/funcionario';
 import AddFuncionarios from './AddFuncionarios';
 import EditFuncionarios from './EditFuncionarios';
 
@@ -36,12 +35,7 @@ function Funcionarios() {
       </div>
       <h1 className='titleh1'>Funcionários</h1>
       <button className='btnFunc' onClick={openAddModal}>Adicionar Funcionário</button>
-     
-
-
       <FuncionarioList editModal={openEditModal}/>
-
-      
     </div>
   );
 }
