@@ -1,11 +1,9 @@
 import { create } from 'zustand'
 
-
 const useFuncionarioStore = create((set) => ({
     funcionarios: [],
     funcionarioEdit: null,
  
-
     addFuncionario: (funcionario) => {
         set(state => ({funcionarios: [...state.funcionarios, funcionario]}))
     },
