@@ -11,6 +11,7 @@ import TelaCaixa from './assets/components/TelaCaixa/TelaCaixa.jsx';
 import TelaGerente from './assets/components/TelaGerente/TelaGerente.jsx';
 import TelaEstoquista from './assets/components/TelaEstoquista/TelaEstoquista.jsx';
 import Funcionarios from './assets/routes/Funcionarios/Funcionarios.jsx';
+import TelaClientes from './assets/components/TelaClientes/TelaClientes.jsx';
 
 import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx';
 
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "funcionarios",
         element: <Funcionarios/>
+      },
+      {
+        path: "clientes",
+        element: <TelaClientes/>
       },
     ],
   },
