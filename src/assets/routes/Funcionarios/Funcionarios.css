@@ -24,7 +24,6 @@
   margin-left: 10px;
 }
 
-
 .employee-form {
   width: 100%;
   margin: 0 auto;
@@ -223,4 +222,20 @@ input[type="email"] {
   color: red;
   font-size: 12px;
   margin-top: -12px;
+}
+
+.inputModal {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  margin-inline: auto;
+  border: 2px solid var(--bg-color);
+  border-radius: 30px;
+  max-width: 450px;
+  padding: 8px;
+  display: flex;
+}
+
+.item {
+  font-weight: bold;
+  color: #c21d2e;
 }

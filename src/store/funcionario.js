@@ -34,7 +34,6 @@ const useFuncionarioStore = create((set) => ({
       },
 
       saveSenha: (novaSenha) => {
-        // Aqui você pode fazer o que quiser com a senha, como enviá-la para o servidor.
         console.log('Senha cadastrada:', novaSenha);
         set({ senha: '', senhaModalOpen: false }); 
       },
