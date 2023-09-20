@@ -6,10 +6,31 @@ import { useEffect, useState } from "react"
 function Login() {
     const [data, setData] = useState([])
 
-    useEffect(() => {
-        fetch('http://localhost:4000/auth/login').then(resp => setData(resp.json())).catch(e => console.log(e.error))
-        console.log(data)
-    }, [])
+
+    const fetching = async () => {
+
+        const body = {
+                "id": "1000",
+                "senha": "senha"
+        }
+
+        const init = {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(body)
+        }
+
+        const url = 'http://localhost:4000/auth/login'
+
+        const respo =  await fetch(url, init)
+            const data = await respo.json()
+            console.log(data)
+    }
+
+  fetching()
+
 
   return (
     <div className="container">

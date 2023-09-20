@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 
-
 const useFuncionarioStore = create((set) => ({
     funcionarios: [],
     funcionarioEdit: null,
