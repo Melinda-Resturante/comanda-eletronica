@@ -13,10 +13,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 10px;
     background-color: #f4f4f4;
     color: var(--bg-color);
     border-radius: 4px;
+    max-width: 950px;
 }
 
 .listFunc p {
@@ -27,11 +28,34 @@
   width: 100%;
   margin: 0 auto;
   color: var(--bg-color);
-  
 }
+
+.formSenha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.fieldset {
+  border: solid 1px var(--bg-color);
+  border-radius: 10px;
+}
+
+.titleh1 {
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
 .titleH2 {
   color: var(--bg-color);
   padding-top: 10px;
+}
+
+.texto {
+  color: var(--bg-color);
 }
 
 .input-group {
@@ -40,16 +64,6 @@
   align-items: center;
   margin-bottom: 15px;
   width: 80%;
-}
-
-.label,
-.lbFuncao {
-  display: inline-block;
-  width: 150px;
-  margin-right: 10px;
-  text-align: right;
-  font-weight: 600;
-  margin-top: 14px;
 }
 
 input[type="text"],
@@ -65,18 +79,89 @@ input[type="email"] {
   margin-top: 20px;
 }
 
+.senha {
+  width: 30%;
+}
+
+.label,
+.lbFuncao {
+  display: inline-block;
+  width: 150px;
+  margin-right: 10px;
+  text-align: right;
+  font-weight: 600;
+  margin-top: 14px;
+}
+
+.lbFuncao {
+  margin-left: -70px;
+  margin-bottom: 20px;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.function-checkboxes label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.function-checkboxes input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.function-checkboxes {
+  padding-left: 20px;
+}
+
 .submit-button, 
 .btnFunc,
 .modal-close,
 .btnEdit,
 .btnDelete,
-.btnProfile {
+.btnProfile,
+.btnSenha,
+.btnSalvar,
+.btnCalcel{
   background-color: #007bff;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.submit-button:hover,
+.btnFunc:hover,
+.btnSenha:hover,
+.btnSalvar:hover {
+  background-color: #0056b3;
+}
+
+.btnProfile{
+  background-color: #00b32d;
+}
+
+.btnProfile:hover {
+  background-color: #03a52c;
+}
+
+.btns {
+  margin-left: 80px;
+  margin-right: 10px;
+}
+
+.btns button {
+  margin-left: 15px;
+}
+
+.dSenha  {
+  margin: 0;
 }
 
 .btnFunc {
@@ -89,7 +174,8 @@ input[type="email"] {
 }
 
 .modal .modal-close,
-.btnDelete {
+.btnDelete,
+.btnCalcel {
   background-color: #dc3545;
 }
 
@@ -97,29 +183,8 @@ input[type="email"] {
   background-color: #ffc107;
 }
 
-.submit-button:hover,
-.btnFunc:hover,
-.btnProfile:hover {
-  background-color: #0056b3;
-}
-
-.btns {
-  margin-left: 80px;
-  margin-right: 10px;
-}
-
-.btns button {
-  margin-left: 15px;
-}
-
-.function-checkboxes label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: normal;
-}
-
-.function-checkboxes input[type="checkbox"] {
-  margin-right: 5px;
+.btnEdit:hover {
+  background-color: #ebb30b;
 }
 
 .modal {
@@ -148,43 +213,29 @@ input[type="email"] {
 }
 
 .modal-close:hover,
-.btnDelete:hover {
-  background-color: #ce2939;
-}
-
-.btnEdit:hover {
-  background-color: #ebb30b;
-}
-
-.fieldset {
-  border: solid 1px var(--bg-color);
-  border-radius: 10px;
-}
-
-.checkboxes {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.lbFuncao {
-  margin-left: -70px;
-  margin-bottom: 20px;
-}
-
-.function-checkboxes {
-  padding-left: 20px;
-}
-
-.titleh1 {
-  font-size: 30px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+.btnDelete:hover,
+.btnCalcel:hover {
+  background-color: #c21d2e;
 }
 
 .error-message {
   color: red;
   font-size: 12px;
   margin-top: -12px;
+}
+
+.inputModal {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  margin-inline: auto;
+  border: 2px solid var(--bg-color);
+  border-radius: 30px;
+  max-width: 450px;
+  padding: 8px;
+  display: flex;
+}
+
+.item {
+  font-weight: bold;
+  color: #c21d2e;
 }

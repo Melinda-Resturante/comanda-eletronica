@@ -71,6 +71,16 @@ function Sidebar() {
 
       <li>
         <a href="#">
+        <i className='bx bxs-food-menu'></i>
+          <span className="link_name">Delivery</span>
+        </a>
+        <ul className='sub-menu blank'>
+          <li><a className='link_name' href="#">Delivery</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">
         <i className='bx bx-user'></i>
           <span className="link_name">Clientes</span>
         </a>
