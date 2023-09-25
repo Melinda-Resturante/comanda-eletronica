@@ -1,55 +1,52 @@
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./Login.css"
 import logo from "../../images/logoRedondaMelinda.png"
-import { useEffect, useState } from "react"
-
+import useFetchLogin from "../../../store/useFetchLogin";
+import AddFuncionarios from "../../routes/Funcionarios/AddFuncionarios";
 
 function Login() {
-    const [data, setData] = useState([])
+    const [token, setToken] = useState("");
+    const navigate = useNavigate(); 
 
+    const handleSuccessfulLogin = (token) => {
+        console.log("Token gerado:", token);
 
-    const fetching = async () => {
-
-        const body = {
-                "id": "1000",
-                "senha": "senha"
-        }
-
-        const init = {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify(body)
-        }
-
-        const url = 'http://localhost:4000/auth/login'
-
-        const respo =  await fetch(url, init)
-            const data = await respo.json()
-            console.log(data)
-    }
-
-  fetching()
-
-
-  return (
-    <div className="container">
-        <form action="POST" className="form-login">
-            <figure>
-                <img src={logo} alt="logo Melinda" />
-            </figure>
-            <div>
-                <label htmlFor="">Registro: </label>
-                <input type="text" placeholder="Registro"/>
-            </div>
-            <div>
-                <label htmlFor="">Senha: </label>
-                <input type="password" placeholder="Senha"/>
-            </div>
-            <button>Entrar</button>
-        </form>
-    </div>
-  )
+        setToken(token); 
+        navigate('/funcionarios', { state: { authToken: token } });
+    };
+    
+    const { setRegister, setPassword, handleSubmit } = useFetchLogin(handleSuccessfulLogin);
+    
+    return (
+        <div className="container">
+            <form onSubmit={handleSubmit} className="form-login">
+                <figure>
+                    <img src={logo} alt="logo Melinda" />
+                </figure>
+                <div>
+                    <label htmlFor="register">Registro: </label>
+                    <input
+                        type="text"
+                        id="register" 
+                        placeholder="Registro"
+                        onChange={(e) => setRegister(e.target.value)} 
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Senha: </label>
+                    <input
+                        type="password"
+                        id="password" 
+                        placeholder="Senha"
+                        onChange={(e) => setPassword(e.target.value)} 
+                    />
+                </div>
+                <button type="submit" >Entrar</button> 
+            </form>
+            {token && <AddFuncionarios authToken={token} isClose={() => setToken('')} />}
+        </div>
+    );
 }
 
-export default Login
+export default Login;

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import useFuncionarioStore from "../../../store/funcionario";
+import { useLocation } from 'react-router-dom';
 
 function EditFuncionarios({ onClose }) {
-    const updateFuncionario = useFuncionarioStore(state => state.updateFuncionario)
-    const funcionarioEdit = useFuncionarioStore(state => state.funcionarioEdit)
+    const location = useLocation();
+    const authToken = location.state && location.state.authToken;
+
+    const updateFuncionario = useFuncionarioStore(state => state.updateFuncionario);
+    const funcionarioEdit = useFuncionarioStore(state => state.funcionarioEdit);
     
-    const [register, setRegister] = useState(null);
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [cpf, setCpf] = useState('');
@@ -19,39 +22,34 @@ function EditFuncionarios({ onClose }) {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [email, setEmail] = useState('');
-    const [selectedFunctions, setSelectedFunctions] = useState([]);
+    const [selectedFunction, setSelectedFunction] = useState(''); 
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        setRegister(funcionarioEdit.register);
-        setName(funcionarioEdit.name);
-        setLastName(funcionarioEdit.lastName);
-        setCpf(funcionarioEdit.cpf);
-        setBirthDate(funcionarioEdit.birthDate);
-        setPhone1(funcionarioEdit.phone1);
-        setPhone2(funcionarioEdit.phone2);
-        setStreet(funcionarioEdit.street);
-        setNumber(funcionarioEdit.number);
-        setCep(funcionarioEdit.cep);
-        setDistrict(funcionarioEdit.district);
-        setCity(funcionarioEdit.city);
-        setState(funcionarioEdit.state);
-        setEmail(funcionarioEdit.email);
-        setSelectedFunctions(funcionarioEdit.jobFunction.split(", "));
+        setName(funcionarioEdit.nome || '');
+        setLastName(funcionarioEdit.sobrenome || '');
+        setCpf(funcionarioEdit.cpf || '');
+        setBirthDate(funcionarioEdit.data_nascimento || '');
+        setPhone1(funcionarioEdit.telefone_01 || '');
+        setPhone2(funcionarioEdit.telefone_02 || '');
+        setStreet(funcionarioEdit.rua || '');
+        setNumber(funcionarioEdit.numero || '');
+        setCep(funcionarioEdit.cep || '');
+        setDistrict(funcionarioEdit.bairro || '');
+        setCity(funcionarioEdit.cidade || '');
+        setState(funcionarioEdit.estado || '');
+        setEmail(funcionarioEdit.email || '');
+        setSelectedFunction(funcionarioEdit.cargo || ''); 
     }, [funcionarioEdit]);
 
     const handleFunctionChange = (e) => {
-        const value = e.target.value;
-        if (selectedFunctions.includes(value)) {
-            setSelectedFunctions(selectedFunctions.filter((func) => func !== value));
-        } else {
-            setSelectedFunctions([...selectedFunctions, value]);
-        }
-    }
+        const selectedValue = e.target.value;
+        setSelectedFunction(selectedValue); 
+    };
 
     const validateForm = () => {
         const newErrors = {};
-
+    
         if (!name) {
             newErrors.name = "Campo obrigatório";
         }
@@ -85,36 +83,67 @@ function EditFuncionarios({ onClose }) {
         if (!state) {
             newErrors.state = "Campo obrigatório";
         }
-        if (selectedFunctions.length === 0) {
-            newErrors.selectedFunctions = "Selecione pelo menos uma função";
+        if (!selectedFunction) {
+            newErrors.selectedFunction = "Selecione uma função";
         }
-
+    
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (validateForm()) {
             const updatedFuncionario = {
                 ...funcionarioEdit,
-                register,
-                name,
-                lastName,
+                nome: name,
+                sobrenome: lastName,
                 cpf,
-                birthDate,
-                phone1,
-                phone2,
-                street,
-                number,
+                data_nascimento: birthDate,
+                telefone_01: phone1,
+                telefone_02: phone2,
+                rua: street,
+                numero: number,
                 cep,
-                district,
-                city,
-                state,
+                bairro: district,
+                cidade: city,
+                estado: state,
                 email,
-                jobFunction: selectedFunctions.join(", "),
+                cargo: selectedFunction,
             };
-            updateFuncionario(updatedFuncionario);
-            onClose();
+
+            console.log('Funcionário editado:', updatedFuncionario);
+
+            try {
+                if (!authToken) {
+                    console.error("Token de autenticação ausente.");
+                    return;
+                }
+
+                const id = updatedFuncionario.id; 
+
+                if (!id) {
+                    console.error("ID do funcionário ausente.");
+                    return;
+                }
+
+                const response = await fetch(`https://comanda-eletronica-api.vercel.app/funcionarios/${id}`, {
+                    method: "PUT",
+                    headers: {
+                        Authorization: `Bearer ${authToken}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(updatedFuncionario),
+                });
+
+                if (response.ok) {
+                    console.log("Funcionário atualizado com sucesso.");
+                    onClose(); 
+                } else {
+                    console.error("Erro ao atualizar o funcionário:", response.status);
+                }
+            } catch (error) {
+                console.error("Erro ao atualizar o funcionário:", error);
+            }
         }
     }
 
@@ -123,15 +152,6 @@ function EditFuncionarios({ onClose }) {
         <div className="employee-form">
          <div className="fieldset">
             <h2 className="titleH2">Editar Funcionário</h2>
-            <div className="input-group">
-                <label className="label">Registro</label>
-                <input 
-                    type="text" 
-                    name="register" 
-                    value={register} 
-                    onChange={e => setRegister(e.target.value)} 
-                    disabled/>
-            </div>
 
             <div className="input-group">
                 <label className="label">Nome</label>
@@ -260,54 +280,22 @@ function EditFuncionarios({ onClose }) {
                     onChange={e => setEmail(e.target.value)} />
             </div>
 
-            <div className="checkboxes">
-                <label htmlFor="" className="lbFuncao">Função</label>
-                <div className="function-checkboxes">
-                    <label>
-                        <input
-                        type="checkbox"
-                        value="Atendente"
-                        checked={selectedFunctions.includes("Atendente")}
+            <div className="input-group">
+                    <label className="label">Função</label>
+                    <select
+                        value={selectedFunction}
                         onChange={handleFunctionChange}
-                        />
-                        Atendente
-                    </label>
+                        name="cargo"
+                    >
+                        <option value="">Selecione um cargo</option>
+                        <option value="Atendente">Atendente</option>
+                        <option value="Caixa">Caixa</option>
+                        <option value="Estoquista">Estoquista</option>
+                        <option value="Gerente">Gerente</option>
+                    </select>
                 </div>
-                <div className="function-checkboxes">
-                    <label>
-                        <input
-                        type="checkbox"
-                        value="Caixa"
-                        checked={selectedFunctions.includes("Caixa")}
-                        onChange={handleFunctionChange}
-                        />
-                        Caixa
-                    </label>
-                </div>
-                <div className="function-checkboxes">
-                    <label>
-                        <input
-                        type="checkbox"
-                        value="Estoquista"
-                        checked={selectedFunctions.includes("Estoquista")}
-                        onChange={handleFunctionChange}
-                        />
-                        Estoquista
-                    </label>
-                </div>
-                <div className="function-checkboxes">
-                    <label>
-                        <input
-                        type="checkbox"
-                        value="Gerente"
-                        checked={selectedFunctions.includes("Gerente")}
-                        onChange={handleFunctionChange}
-                        />
-                        Gerente
-                    </label>
-                </div>
-          </div>
-            {errors.selectedFunctions && <p className="error-message">{errors.selectedFunctions}</p>}
+                {errors.selectedFunction && <p className="error-message">{errors.selectedFunction}</p>}
+
 
             <button onClick={handleSave} className="submit-button">Editar Funcionário</button>
         </div> 
