@@ -13,7 +13,7 @@ const useFuncionarioStore = create((set) => ({
     },
 
     setFuncionarioEdit: (funcionario) => {
-        set({funcionarioEdit: funcionario})
+        set({ funcionarioEdit: funcionario })
     },
 
     updateFuncionario: (funcionario) => {

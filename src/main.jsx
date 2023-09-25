@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -11,8 +11,10 @@ import TelaCaixa from './assets/components/TelaCaixa/TelaCaixa.jsx';
 import TelaGerente from './assets/components/TelaGerente/TelaGerente.jsx';
 import TelaEstoquista from './assets/components/TelaEstoquista/TelaEstoquista.jsx';
 import Funcionarios from './assets/routes/Funcionarios/Funcionarios.jsx';
-
 import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx';
+import Private from './assets/routes/PrivateRoutes/Private.jsx';
+
+
 
 const router = createBrowserRouter([
   {
@@ -26,27 +28,29 @@ const router = createBrowserRouter([
     children: [
       {
         path: "atendente",
-        element: <TelaAtendente/>
+        element: <Private> <TelaAtendente/> </Private>  
       },
       {
         path: "caixa",
-        element: <TelaCaixa/>
+        element: <Private> <TelaCaixa/> </Private>
       },
       {
         path: "gerente",
-        element: <TelaGerente/>
+        element: <Private> <TelaGerente /> </Private>
       },
       {
         path: "estoquista",
-        element: <TelaEstoquista/>
+        element: <Private> <TelaEstoquista/> </Private>
       },
       {
         path: "funcionarios",
-        element: <Funcionarios/>
+        element: <Private> <Funcionarios/> </Private>
       },
     ],
   },
 ]);
+
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
