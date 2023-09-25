@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import "./Sidebar.css";
 
 import LogoIMG from "../../images/nome melinda.png";
+import authLoginStore from '../../../store/Auth';
 
 function Sidebar() {
+
+  const { logout } = authLoginStore()
+  const navigate = useNavigate()
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 512);
 
@@ -66,6 +71,16 @@ function Sidebar() {
 
       <li>
         <a href="#">
+        <i className='bx bxs-food-menu'></i>
+          <span className="link_name">Delivery</span>
+        </a>
+        <ul className='sub-menu blank'>
+          <li><a className='link_name' href="#">Delivery</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">
         <i className='bx bx-user'></i>
           <span className="link_name">Clientes</span>
         </a>
@@ -85,14 +100,25 @@ function Sidebar() {
       </li>
 
       <li>
-        <a href="#">
+        <Link to="/estoquista">
         <i className='bx bx-box'></i>
           <span className="link_name">Estoque</span>
-        </a>
+        </Link>
         <ul className='sub-menu blank'>
           <li><a className='link_name' href="#">Estoque</a></li>
         </ul>
       </li>
+
+      <li>
+        <Link to="/funcionarios">
+        <i className='bx bxs-user-pin'></i>
+          <span className="link_name">Funcionários</span>
+        </Link>
+        <ul className='sub-menu blank'>
+          <li><a className='link_name' href="#">Funcionários</a></li>
+        </ul>
+      </li>
+
       <li>
         <div className="profile-details">
           <div className="profile-content">
@@ -102,7 +128,7 @@ function Sidebar() {
             <div className="profile_name">Nome</div>
             <div className="job">Função</div>
           </div>
-          <i className='bx bx-log-out'></i>
+          <i className='bx bx-log-out' onClick={() => logout(navigate)}></i>
         </div>
       </li>
     </ul>
