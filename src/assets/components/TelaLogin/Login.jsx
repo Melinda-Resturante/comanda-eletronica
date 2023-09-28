@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./Login.css"
 import logo from "../../images/logoRedondaMelinda.png"
-import useFetchLogin from "../../../store/useFetchLogin";
+import useFetchLogin from "../../../hooks/useFetchLogin";
 import AddFuncionarios from "../../routes/Funcionarios/AddFuncionarios";
 
 function Login() {
