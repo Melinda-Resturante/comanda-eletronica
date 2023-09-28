@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import "./TelaEstoque.css";
+import CrudEstoque from './Crud/CrudEstoque';
 
 function TelaEstoquista() {
+
   return (
-    <div>
-        <h2>Tela Estoquista</h2>
+    <div className='ContainerEstoque'>
+      <h1 className='TituloEstoque'>Estoque</h1>
+        <CrudEstoque/>
     </div>
   )
 }

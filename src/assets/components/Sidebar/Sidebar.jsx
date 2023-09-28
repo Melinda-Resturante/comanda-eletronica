@@ -44,7 +44,7 @@ function Sidebar() {
     </div>
     <ul className="nav-links">
       <li>
-        <a href="#">
+        <a href="/">
           <i className='bx bx-grid-alt' ></i>
           <span className="link_name">Inicio</span>
         </a>
@@ -80,7 +80,7 @@ function Sidebar() {
       </li>
 
       <li>
-        <a href="#">
+        <a href="/clientes">
         <i className='bx bx-user'></i>
           <span className="link_name">Clientes</span>
         </a>
