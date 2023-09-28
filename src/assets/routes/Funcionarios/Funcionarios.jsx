@@ -35,10 +35,7 @@ function Funcionarios() {
       </div>
       <h1 className='titleh1'>Funcionários</h1>
       <button className='btnFunc' onClick={openAddModal}>Adicionar Funcionário</button>
-<<<<<<< HEAD
      
-=======
->>>>>>> 3b11fda8506fa19d8add7cd5077a9cf03da49ecd
       <FuncionarioList editModal={openEditModal}/>
     </div>
   );
