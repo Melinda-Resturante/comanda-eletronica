@@ -15,8 +15,6 @@ import TelaClientes from './assets/components/TelaClientes/TelaClientes.jsx';
 import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx';
 import Private from './assets/routes/PrivateRoutes/Private.jsx';
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",
