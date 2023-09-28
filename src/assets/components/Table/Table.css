@@ -1,0 +1,85 @@
+.table-container {
+    display: block;
+    height: 17em;
+    margin-bottom: 1.2em;
+    overflow-y: auto;   
+}
+
+#customers {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    transition: .5s all;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f0eded;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--bg-color2);
+    letter-spacing: 1px;
+    color: white;
+  }
+
+  #customers tr td div{
+    padding: .2em;
+    display: flex;
+    align-items: center;
+    
+  }
+
+  #customers td i{
+    color: rgb(32, 66, 117);
+    font-size: 1.4em;
+  }
+
+  #customers td button {
+    cursor: pointer;
+    padding: .4em;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-right: .5em;
+    transition: all 200ms linear;
+  }
+
+   .removeBtn {
+    color: var(--detail-color2);
+    border: 1px solid var(--detail-color2);
+  }
+
+  .removeBtn:hover {
+    background-color: var(--detail-color2);
+    color: #ddd;
+  }
+
+  .descBtn {
+    border: 1px solid rgb(32, 66, 117);
+    color: rgb(32, 66, 117);
+  }
+
+  .descBtn:hover {
+    color: #ddd;
+    background-color: rgb(32, 66, 117);
+  }
+
+  .confirmBtn {
+    text-align: end;
+  }
+
+  .confirmBtn button {
+    padding: .5em .7em;
+    cursor: pointer;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--detail-color);
+    border: 1px solid var(--detail-color);
+  }

@@ -1,0 +1,59 @@
+.dropDown {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    border: 1px solid var(--bg-color2);
+    border-radius: 10px;
+    font-size: 1.1em;
+    padding: .2em;
+    transition: all 0.3s ease;
+}
+
+.dropDown.visible {
+    height: 280px;
+    opacity: 1;
+}
+
+.fixed {
+    width: 100%;
+    resize: none;
+}
+
+.dropDown-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1em;
+    padding: 1em;
+}
+
+.dropDown-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: .2em;
+}
+
+.dropDown-check label {
+    padding-left: .2em;
+    font-size: 1em;
+}
+
+input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+    margin: 1px;
+}
+
+.dropDown-textarea label {
+    font-size: 1.2em;
+}
+
+.dropDown-textarea textarea{
+    width: 100%;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    resize: none;
+}
+

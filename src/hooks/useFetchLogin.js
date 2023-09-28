@@ -1,43 +1,50 @@
-import { useState } from "react";
+import { useState } from "react"
+import authLoginStore from "../store/Auth"
+import { useNavigate } from 'react-router-dom'
 
-const useFetchLogin = (setToken) => { 
-    const [register, setRegister] = useState("");
-    const [password, setPassword] = useState("");
+const useFetchLogin = () => {
+
+  const [error, setError] = useState(null)
+  const { setUser, login } = authLoginStore()
+  const navigate = useNavigate()
+   
+  const fetchData = async ({ register, password }) => {
+
+    const url = 'https://comanda-eletronica-api.vercel.app/auth/login'
 
     const body = {
         "id": register,
         "senha": password
-    };
+    }   
 
-    const fetchData = async () => {
-        const url = "https://comanda-eletronica-api.vercel.app/auth/login";
+    const init = {
+        method: 'POST',
+        headers: { "Content-Type": 'application/json' },
+        body: JSON.stringify(body)
+    }
 
-        const init = {
-            method: 'POST',
-            headers: { "Content-Type": 'application/json' },
-            body: JSON.stringify(body)
-        };
+    try {
+        const response = await fetch(url, init);
+        if (!response.ok) {
+           
+          const errorMessage = await response.text()
+          const cleanedError = errorMessage.replace(/"/g, '')
+          console.log('Erro na chamada da API:', cleanedError)
+          setError(cleanedError)
 
-        try {
-            const response = await fetch(url, init);
-            if (response.ok) {
-                const json = await response.json();
-                const token = json.acssesToken;
-                setToken(token); 
-            } else {
-                console.log("Erro ao fazer login");
-            }
-        } catch (error) {
-            console.log(error);
+        } else {
+          const data = await response.json();
+          setUser(data)
+
+          login(data, navigate)
+
+          console.log('Resposta da API:', data);
         }
-    };
+    } catch (error) {
+         console.error('Erro durante a chamada da API:', error);
+    }
+  }
+    return { fetchData, error }
+}
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        fetchData();
-    };
-
-    return { setRegister, setPassword, handleSubmit };
-};
-
-export default useFetchLogin;
+export default useFetchLogin
