@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './TelaAtendente.css';
 import Modal from '../Modal/Modal';
+import authLoginStore from '../../../store/Auth';
 
 const TelaAtendente = () => {
   const [open, setOpen] = useState(false)
@@ -17,8 +18,6 @@ const TelaAtendente = () => {
     }
     return data;
   };
-
-
 
   const fakeDataCard = generateFakeData(300);
 
