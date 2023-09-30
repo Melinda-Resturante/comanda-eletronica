@@ -3,10 +3,12 @@ import { useLocation } from 'react-router-dom';
 import SenhaModal from './SenhaModal .jsx'; 
 import PerfilModal from './PerfilModal .jsx';
 import useFuncionarioStore from "../../../store/funcionario";
+import authLoginStore from '../../../store/Auth.js';
 
 const FuncionarioList = ({ editModal }) => {
   const location = useLocation();
-  const authToken = location.state && location.state.authToken;
+const { user } = authLoginStore()
+  const authToken = user.acssesToken;
 
   const [isLoading, setIsLoading] = useState(true);
   const [funcionarios, setFuncionarios] = useState([]);
@@ -27,6 +29,7 @@ const FuncionarioList = ({ editModal }) => {
         .then((response) => response.json())
         .then((data) => {
           setFuncionarios(data);
+          console.log(funcionarios)
           setIsLoading(false);
         })
         .catch((error) => {
@@ -115,6 +118,7 @@ const FuncionarioList = ({ editModal }) => {
           </div>
         </div>
       ))}
+
 
       <SenhaModal
         isOpen={senhaModalOpen}

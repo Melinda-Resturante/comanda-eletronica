@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
-import useFuncionarioStore from "../../../store/funcionario";
+import authLoginStore from "../../../store/Auth";
 
 function AddFuncionarios({ isClose }) {
   const location = useLocation();
-  const authToken = location.state && location.state.authToken;
-
-  const addFuncionario = useFuncionarioStore(state => state.addFuncionario);
+  const { user } = authLoginStore()
+  const authToken = user.acssesToken;
+  console.log('authtoken----', authToken)
 
   const [selectedFunctions, setSelectedFunctions] = useState([]);
   const [errors, setErrors] = useState({});

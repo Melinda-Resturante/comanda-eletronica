@@ -1,18 +1,8 @@
-import { Outlet } from 'react-router-dom';
-
 import './App.css'
+import { Outlet } from 'react-router-dom';
 import Sidebar from './assets/components/Sidebar/Sidebar';
-import authLoginStore from './store/Auth';
-import { useEffect } from 'react';
 
 function App() {
-
-  const { initialize } = authLoginStore()
-
-useEffect(() => {
-  initialize()
-  console.log('inicializado com sucesso')
-}, [])
 
   return (
     <div>

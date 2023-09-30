@@ -8,7 +8,7 @@ import authLoginStore from '../../../store/Auth';
 
 function Sidebar() {
 
-  const { logout } = authLoginStore()
+  const { logout, user } = authLoginStore()
   const navigate = useNavigate()
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 512);
@@ -125,8 +125,8 @@ function Sidebar() {
           <i className='bx bxs-user-circle'></i>
           </div>
           <div className="name-job">
-            <div className="profile_name">Nome</div>
-            <div className="job">Função</div>
+            <div className="profile_name">{user?.nome}</div>
+            <div className="job">{user?.cargo}</div>
           </div>
           <i className='bx bx-log-out' onClick={() => logout(navigate)}></i>
         </div>

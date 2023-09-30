@@ -7,12 +7,10 @@ const Private = ({ children }) => {
   const { authenticated } = authLoginStore()  
  
   if(!authenticated) {
-    console.log('return do navigate', authenticated)
     return <Navigate to="/" />
-  } else {
-    console.log(authenticated, 'authenticated do children')
-    return children;
   }
+  
+    return children;
 }
 
 export default Private
