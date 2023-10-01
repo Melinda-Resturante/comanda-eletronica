@@ -2,7 +2,7 @@ import "./Login.css"
 import logo from "../../images/logoRedondaMelinda.png"
 import useFetchLogin from "../../../hooks/useFetchLogin"
 import { useForm } from 'react-hook-form'
-import { schema } from "../../../hooks/validation"
+import { schema } from '../../../security/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from "react"
 

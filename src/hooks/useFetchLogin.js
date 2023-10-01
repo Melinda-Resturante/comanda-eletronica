@@ -1,6 +1,7 @@
 import { useState } from "react"
 import authLoginStore from "../store/Auth"
 import { useNavigate } from 'react-router-dom'
+import { dataEncrypt } from "../security/encrypt-data"
 
 const useFetchLogin = () => {
 
@@ -34,8 +35,8 @@ const useFetchLogin = () => {
 
       } else {
         const data = await response.json();
-        
-        setUser(data)
+        const encrypt = dataEncrypt(data)
+        setUser(encrypt)
         login(data, navigate)
         }
     } catch (error) {

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 import { persist } from 'zustand/middleware'
+import { dataEncrypt } from '../security/encrypt-data'
 
 let LoginStore = (set) => ({
 
@@ -12,9 +13,9 @@ let LoginStore = (set) => ({
     set({ authenticated: authenticated }),
 
     login: (data, navigate) => { 
-        set({ user: data, authenticated: true })
-        
-        localStorage.setItem('user', JSON.stringify(data))
+        set({ user: dataEncrypt(data), authenticated: true })
+
+        localStorage.setItem('user', dataEncrypt(data))
         navigate('/atendente')
     },
 
