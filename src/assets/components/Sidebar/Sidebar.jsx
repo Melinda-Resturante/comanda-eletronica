@@ -5,10 +5,12 @@ import "./Sidebar.css";
 
 import LogoIMG from "../../images/nome melinda.png";
 import authLoginStore from '../../../store/Auth';
+import { useDecryptUser } from '../../../security/userDecrypt.js';
 
 function Sidebar() {
 
   const { logout, user } = authLoginStore()
+  const {decryptUser} = useDecryptUser(user)
   const navigate = useNavigate()
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 512);
@@ -125,8 +127,8 @@ function Sidebar() {
           <i className='bx bxs-user-circle'></i>
           </div>
           <div className="name-job">
-            <div className="profile_name">{user?.nome}</div>
-            <div className="job">{user?.cargo}</div>
+            <div className="profile_name">{decryptUser?.nome}</div>
+            <div className="job">{decryptUser?.cargo}</div>
           </div>
           <i className='bx bx-log-out' onClick={() => logout(navigate)}></i>
         </div>

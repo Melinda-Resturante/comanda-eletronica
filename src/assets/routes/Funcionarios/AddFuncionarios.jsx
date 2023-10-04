@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useLocation } from 'react-router-dom';
 import authLoginStore from "../../../store/Auth";
+import { useDecryptUser } from '../../../security/userDecrypt.js';
 
 function AddFuncionarios({ isClose }) {
-  const location = useLocation();
   const { user } = authLoginStore()
-  const authToken = user.acssesToken;
+  const {decryptUser} = useDecryptUser(user)
+  const authToken = decryptUser.acssesToken;
   console.log('authtoken----', authToken)
 
   const [selectedFunctions, setSelectedFunctions] = useState([]);
