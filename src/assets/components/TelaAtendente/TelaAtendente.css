@@ -1,0 +1,61 @@
+
+.navigation {
+    padding: .7em;
+    display: flex;
+    justify-content: end;
+}
+
+.nav-search {
+    padding: .5em;
+}
+
+.nav-search label {
+    font-size: 1.2em;
+    padding-right: .4em;
+}
+
+.nav-search input{
+    font-size: 1.1em;
+    padding: .4em;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+
+/* Main Container e Cards */
+.main-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1em;
+    padding: 1em;
+}
+
+.card {
+    box-shadow: 0 0 10px rgb(0,0,0,.2);
+    height: 220px;
+    padding: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+
+.available {
+    background-color: rgb(32, 66, 117);
+}
+
+.busy {
+    background-color: var(--detail-color2);
+}
+
+
+
+@media screen and (max-width: 420px) {
+    .navigation {
+        justify-content: center;
+    }
+
+    .main-container {
+        padding: 0px;
+    }
+}

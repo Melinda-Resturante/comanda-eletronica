@@ -1,13 +1,16 @@
-import { useState } from 'react'
 import './App.css'
+import { Outlet } from 'react-router-dom';
+import Sidebar from './assets/components/Sidebar/Sidebar';
 
 function App() {
 
   return (
-    <>
-      <h1>Hello world</h1>
-      <h3>Testando commit Rafael</h3>
-    </>
+    <div>
+      <Sidebar />
+      <section className="home-section">
+          <Outlet/>    
+      </section>
+    </div>
   )
 }
 
