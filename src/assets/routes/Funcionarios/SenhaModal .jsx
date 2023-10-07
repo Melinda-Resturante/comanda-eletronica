@@ -1,36 +1,62 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Modal from 'react-modal';
+import { useDecryptUser } from '../../../security/userDecrypt';
+import { useForm } from 'react-hook-form';
+
 
 const SenhaModal = ({ isOpen, onClose, onSave }) => {
-  const [senha, setSenha] = useState('');
+ 
+  const { decryptUser } = useDecryptUser()
+  const authToken = decryptUser.acssesToken
 
-  const handleSalvarSenhaClick = () => {
-    onSave(senha);
-    setSenha(''); 
-    onClose();
-  };
+  const { register, handleSubmit, formState } = useForm({
+    mode: 'onSubmit',
+    defaultValues: { cpf: '', senha: '' },
+    
+  })
 
+
+  const handleForm = async ({ cpf, senha }) => {
+    
+    const body = {
+      "cpf": "11122233345",
+      "senha": "senha"
+    }
+    const init = {
+      method: 'POST',
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${authToken}` },
+      body: JSON.stringify(body)
+    }
+
+    await fetch('https://comanda-eletronica-api.vercel.app/funcionarios/1006', init).then((resp) => resp.json()).then((json) => console.log(json)).catch((error) => console.log(error))
+  }
+  
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
       className="modal"
     >
-      <div className='employee-form formSenha'>
+      <form className='employee-form formSenha' onSubmit={handleSubmit(handleForm)}>
 
           <h2 className='titleH2'>Cadastrar Senha</h2>
           <input
-            type="password"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
+            type="text"
+            placeholder="CPF"
+            {...register('cpf')}
             className='input-group'
           />
+          <input
+            type="password"
+            placeholder="Senha"
+            {...register('senha')}
+            className='input-group'
+          />
+            <button className='btnSalvar'>Salvar</button>
+      </form>
           <div className='btns dSenha'>
-            <button onClick={handleSalvarSenhaClick} className='btnSalvar'>Salvar</button>
             <button onClick={onClose} className='btnCalcel'>Cancelar</button>
           </div>
-      </div>
     </Modal>
   );
 };

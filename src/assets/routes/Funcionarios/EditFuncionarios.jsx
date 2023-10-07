@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import useFuncionarioStore from "../../../store/funcionario";
-import { useLocation } from 'react-router-dom';
+import { useDecryptUser } from '../../../security/userDecrypt';
 
 function EditFuncionarios({ onClose }) {
-    const location = useLocation();
-    const authToken = location.state && location.state.authToken;
 
-    const updateFuncionario = useFuncionarioStore(state => state.updateFuncionario);
+    const { decryptUser } = useDecryptUser()
+    const authToken = decryptUser.acssessToken;
+
     const funcionarioEdit = useFuncionarioStore(state => state.funcionarioEdit);
     
     const [name, setName] = useState('');

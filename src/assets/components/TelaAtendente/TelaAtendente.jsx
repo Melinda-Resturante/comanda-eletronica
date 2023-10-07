@@ -1,16 +1,11 @@
 import { useState } from 'react';
 import './TelaAtendente.css';
 import Modal from '../Modal/Modal';
-import authLoginStore from '../../../store/Auth';
-import {  useDecryptUser } from '../../../security/userDecrypt';
 
 const TelaAtendente = () => {
   const [open, setOpen] = useState(false)
   const [fakeData, setFakeData] = useState('')
-
-  const { user } = authLoginStore()
-  console.log(user)
-
+  
   const generateFakeData = (count) => {
     const data = [];
     for (let i = 1; i <= count; i++) {
@@ -22,10 +17,6 @@ const TelaAtendente = () => {
     }
     return data;
   };
-
-  const { decryptUser } = useDecryptUser()
-
-  console.log(decryptUser)
 
   const fakeDataCard = generateFakeData(300);
 
