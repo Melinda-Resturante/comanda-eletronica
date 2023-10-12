@@ -273,6 +273,7 @@ function CrudEstoque() {
            setNovaCategoria(''); 
          }}
          contentLabel="Adicionar Item Modal"
+         className= "modal-estoque"
        >
       <h2>{itemEditado ? 'Editar Item' : 'Adicionar Novo Item'}</h2>
       <input
@@ -281,6 +282,7 @@ function CrudEstoque() {
         placeholder='ID'
         value={novoItem.id}
         onChange={handleInputChange}
+        className='modal-input'
       />
       <input
         type='text'
@@ -288,6 +290,7 @@ function CrudEstoque() {
         placeholder='Nome'
         value={novoItem.nome_produto}
         onChange={handleInputChange}
+        className='modal-input'
       />
       <input
         type='text'
@@ -295,6 +298,7 @@ function CrudEstoque() {
         placeholder='Descrição'
         value={novoItem.descricao}
         onChange={handleInputChange}
+        className='modal-input'
       />
       <input
         type='text'
@@ -302,6 +306,7 @@ function CrudEstoque() {
         placeholder='Preço'
         value={novoItem.preco}
         onChange={handleInputChange}
+        className='modal-input'
       />
       <input
         type='number'
@@ -309,6 +314,7 @@ function CrudEstoque() {
         placeholder='Quantidade'
         value={novoItem.quantidadeLocal}
         onChange={handleInputChange}
+        className='modal-input'
       />
       <div className='filtro-categoria'>
     <label>Categoria:</label>
@@ -316,6 +322,7 @@ function CrudEstoque() {
       name='categoria'
       value={novoItem.categoria}
       onChange={handleInputChange}
+      className='modal-select'
     >
       <option value=''>Selecione uma categoria</option>
       {categorias.map((categoria) => (
@@ -326,20 +333,21 @@ function CrudEstoque() {
     </select>
   </div>
       <div className='filtro-categoria'>
-        <label>Nova Categoria:</label>
+        <label className='modal-label'>Nova Categoria:</label>
         <input
           type='text'
           name='novaCategoria'
           placeholder='Nova Categoria'
           value={novaCategoria}
           onChange={(e) => setNovaCategoria(e.target.value)}
+          className='modal-input categoria'
         />
-        <button onClick={handleAdicionarCategoria}>Adicionar Categoria</button>
+        <button className='modal-button' onClick={handleAdicionarCategoria}>Adicionar Categoria</button>
       </div>
-      <button onClick={itemEditado ? handleSalvarEdicao : handleAddItem}>
+      <button className='modal-button action-button' onClick={itemEditado ? handleSalvarEdicao : handleAddItem}>
         {itemEditado ? 'Salvar' : 'Adicionar'}
       </button>
-      <button onClick={() => {
+      <button className='modal-button action-button' onClick={() => {
         setIsModalOpen(false);
         setItemEditado(null);
         setNovoItem({

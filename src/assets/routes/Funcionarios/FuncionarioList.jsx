@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import SenhaModal from './SenhaModal .jsx'; 
 import PerfilModal from './PerfilModal .jsx';
 import useFuncionarioStore from "../../../store/funcionario";
-import authLoginStore from '../../../store/Auth.js';
 import { useDecryptUser } from '../../../security/userDecrypt.js';
 
 const FuncionarioList = ({ editModal }) => {
-  const { user } = authLoginStore()
-  const {decryptUser} = useDecryptUser(user)
+  
+  const { decryptUser } = useDecryptUser()
   const authToken = decryptUser.acssesToken;
 
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +16,6 @@ const FuncionarioList = ({ editModal }) => {
   const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
   const [senhaModalOpen, setSenhaModalOpen] = useState(false);
 
-  const funcionarioEdit = useFuncionarioStore(state => state.funcionarioEdit);
 
   useEffect(() => {
     if (authToken) {

@@ -1,29 +1,10 @@
 import "./Login.css"
 import logo from "../../images/logoRedondaMelinda.png"
-import useFetchLogin from "../../../hooks/useFetchLogin"
-import { useForm } from 'react-hook-form'
-import { schema } from '../../../security/validation'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from "react"
+import { useLogin } from "../../../hooks/useLogin";
 
 function Login() {
 
-  const { register, handleSubmit, formState: {errors}, reset, setFocus } = useForm({
-    mode: 'onSubmit',
-    defaultValues: { register: '', password: ''},
-    resolver: zodResolver(schema)
-  })
-
-  const { fetchData, error }  = useFetchLogin()
-
-  const handleForm = async (data) => {
-   await fetchData(data)
-    reset()
-  }
-
-  useEffect(() => {
-    setFocus('register')
-  }, [])
+  const { register, handleSubmit, handleForm, errors, error, loading } = useLogin()
 
   return (
     <div className="container">
@@ -58,7 +39,7 @@ function Login() {
                     <p className="error-login-message">{error}</p>
                  )}
             </div>
-            <button type="submit">Entrar</button>
+            <button type="submit">{ loading ? <i className='bx bx-loader-circle loading-icon'></i> : 'Entrar' }</button>
         </form>
     </div>
   )

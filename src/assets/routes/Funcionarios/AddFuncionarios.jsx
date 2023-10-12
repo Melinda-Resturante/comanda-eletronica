@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import authLoginStore from "../../../store/Auth";
-import { useDecryptUser } from '../../../security/userDecrypt.js';
+import { useDecryptUser } from "../../../security/userDecrypt";
 
 function AddFuncionarios({ isClose }) {
-  const { user } = authLoginStore()
-  const {decryptUser} = useDecryptUser(user)
+  
+  const { decryptUser } = useDecryptUser()
   const authToken = decryptUser.acssesToken;
   console.log('authtoken----', authToken)
 

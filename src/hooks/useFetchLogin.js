@@ -6,6 +6,7 @@ import { dataEncrypt } from "../security/encrypt-data"
 const useFetchLogin = () => {
 
   const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
   const { setUser, login } = authLoginStore()
   const navigate = useNavigate()
    
@@ -25,9 +26,10 @@ const useFetchLogin = () => {
     }
 
   try {
+    setLoading(true)
     const response = await fetch(url, init);
     if (!response.ok) {
-        
+      setLoading(false)
       const errorMessage = await response.text()
       const cleanedError = errorMessage.replace(/"/g, '')
       console.log('Erro na chamada da API:', cleanedError)
@@ -35,7 +37,9 @@ const useFetchLogin = () => {
 
       } else {
         const data = await response.json();
+        setLoading(false)
         const encrypt = dataEncrypt(data)
+
         setUser(encrypt)
         login(data, navigate)
         }
@@ -43,7 +47,7 @@ const useFetchLogin = () => {
          console.error('Erro durante a chamada da API:', error);
     }
   }
-    return { fetchData, error }
+    return { fetchData, error, loading }
 }
 
 export default useFetchLogin

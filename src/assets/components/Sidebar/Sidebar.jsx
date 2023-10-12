@@ -5,12 +5,12 @@ import "./Sidebar.css";
 
 import LogoIMG from "../../images/nome melinda.png";
 import authLoginStore from '../../../store/Auth';
-import { useDecryptUser } from '../../../security/userDecrypt.js';
+import { useDecryptUser } from '../../../security/userDecrypt';
 
 function Sidebar() {
 
-  const { logout, user } = authLoginStore()
-  const {decryptUser} = useDecryptUser(user)
+  const { logout } = authLoginStore()
+  const { decryptUser } = useDecryptUser()
   const navigate = useNavigate()
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 512);
