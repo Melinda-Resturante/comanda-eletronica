@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './Modal.css'
 import Table from '../Table/Table'
 import DropDown from '../DropDown/DropDown'
+import useFetchProduts from '../../../hooks/useFetchProduts'
+import productStore from '../../../store/products'
 
 function Modal({ isOpen, setOpen, data }) {
     const [openDrop, setOpenDrop] = useState(false)
 
-    const buttonFake = [
-        'Almoço', 'Coca-Cola 2L', 'Suco de Laranja 1.5L',
-        'Cerveja 600ml', 'Suco de Abacaxi', 'Fanta 2L', 
-        'Jantinha', 'Batata Frita', 'Caipirinha', 'Feijoada', 'Café'
-    ]
+    const { products } = useFetchProduts()
+    const { addProducts } = productStore()
 
     if(isOpen) {
         return (
@@ -19,9 +18,12 @@ function Modal({ isOpen, setOpen, data }) {
                     <h1>Comanda {data.id}</h1>
 
                     <section className='section-button'>
-                        {buttonFake.map((btn, index) => (
-                            <button key={index}>
-                                {btn}
+                        {products?.map((product, index) => (
+                            <button 
+                             key={index}
+                             onClick={() =>{ addProducts(product) }}
+                             >
+                               {product.nome_produto}
                             </button>
                         ))}
                     </section>
@@ -35,7 +37,8 @@ function Modal({ isOpen, setOpen, data }) {
                      <DropDown isVisible={openDrop} />
                    
                     <div className="confirmBtn">
-                    <button onClick={() => setOpen(!isOpen)}>Confirmar</button>
+                        <button>Fechar</button>
+                        <button onClick={() => setOpen(!isOpen)}>Confirmar</button>
                     </div>
                 </div>
             </div>

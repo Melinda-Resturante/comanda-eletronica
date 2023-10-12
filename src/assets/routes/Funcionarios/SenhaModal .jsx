@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import { useDecryptUser } from '../../../security/userDecrypt';
 import { useForm } from 'react-hook-form';
@@ -15,20 +14,22 @@ const SenhaModal = ({ isOpen, onClose, onSave }) => {
     
   })
 
-
-  const handleForm = async ({ cpf, senha }) => {
+  const handleForm =  ({ cpf, senha }) => {
     
     const body = {
-      "cpf": "11122233345",
-      "senha": "senha"
+      "cpf": cpf,
+      "senha": senha
     }
     const init = {
       method: 'POST',
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${authToken}` },
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${authToken}`},
       body: JSON.stringify(body)
     }
 
-    await fetch('https://comanda-eletronica-api.vercel.app/funcionarios/1006', init).then((resp) => resp.json()).then((json) => console.log(json)).catch((error) => console.log(error))
+     fetch('https://comanda-eletronica-api.vercel.app/funcionarios/1006', init)
+    .then((resp) => resp.json())
+    .then((json) => console.log(json))
+    .catch((error) => console.log(error))
   }
   
   return (

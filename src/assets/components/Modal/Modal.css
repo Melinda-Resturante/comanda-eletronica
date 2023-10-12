@@ -58,5 +58,8 @@
 
 .confirmBtn {
     margin-top: 1em;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
     text-align: center;
 }

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import "./CrudEstoque.css";
 import Modal from 'react-modal';
-import authLoginStore from '../../../../store/Auth.js';
 import { useDecryptUser } from '../../../../security/userDecrypt';
 
 Modal.setAppElement('#root');
 
 function CrudEstoque() {
-  const { user } = authLoginStore();
-  const { decryptUser } = useDecryptUser(user);
+  const { decryptUser } = useDecryptUser();
   const authToken = decryptUser.acssesToken;
 
   const [estoque, setEstoque] = useState([]);
