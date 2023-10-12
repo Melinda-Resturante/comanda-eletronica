@@ -6,7 +6,6 @@ import "./Sidebar.css";
 import LogoIMG from "../../images/nome melinda.png";
 import authLoginStore from '../../../store/Auth';
 import { useDecryptUser } from '../../../security/userDecrypt';
-import { useDecryptUser } from '../../../security/userDecrypt.js';
 
 function Sidebar() {
 
