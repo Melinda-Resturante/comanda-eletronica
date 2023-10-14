@@ -1,18 +1,21 @@
 import React from 'react';
-import Modal from 'react-modal';
+import CustomModal from '../../components/Custom/CustomModal/CustomModal';
 
-const PerfilModal = ({ isOpen, onClose, funcionario, cargoNome  }) => {
-    if (!funcionario) {
-      return (
-        <Modal isOpen={isOpen} onRequestClose={onClose} className="modal">
+const PerfilModal = ({ isOpen, onClose, funcionario, cargoNome, children }) => {
+  if (!funcionario) {
+    return (
+      <CustomModal isOpen={isOpen} onClose={onClose}>
+        <div className="modal-content">
           <p>Nenhum funcionário selecionado.</p>
           <button onClick={onClose}>Fechar</button>
-        </Modal>
-      );
-    }
-  
-    return (
-      <Modal isOpen={isOpen} onRequestClose={onClose} className="modal">
+        </div>
+      </CustomModal>
+    );
+  }
+
+  return (
+    <CustomModal isOpen={isOpen} onClose={onClose}>
+      <div className="modal-content">
         <h2 className='titleH2'>Perfil do Funcionário</h2>
         <p className='texto inputModal'><span className='item'>Número de registro: </span> {funcionario.id}</p>
         <p className='texto inputModal'><span className='item'>Nome: </span> {funcionario.nome}</p>
@@ -28,10 +31,10 @@ const PerfilModal = ({ isOpen, onClose, funcionario, cargoNome  }) => {
         <p className='texto inputModal'><span className='item'>Estado: </span>{funcionario.estado}</p>
         <p className='texto inputModal'><span className='item'>CEP: </span>{funcionario.cep}</p>
         <p className='texto inputModal'><span className='item'>Cargo: </span>{cargoNome}</p>
-        
-        <button onClick={onClose} className='modal-close'>Fechar</button>
-      </Modal>
-    );
-  };
-  
+        {children}
+      </div>
+    </CustomModal>
+  );
+};
+
 export default PerfilModal;

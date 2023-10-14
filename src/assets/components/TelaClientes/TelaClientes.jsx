@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ModalClientes from './Formulario/ModalClientes';
-import "./Formulario/FormularioClientes.css"
-import "./ListaClientes.css"
 import DetalhesClienteModal from './DetalhesClienteModal';
+import CustomTable from '../Custom/CustomTable/CustomTable';
+import CustomModal from '../Custom/CustomModal/CustomModal';
+import FormularioClientes from './Formulario/FormularioClientes';
 
 function TelaClientes() {
   const [modalCadastroIsOpen, setModalCadastroIsOpen] = useState(false);
@@ -49,44 +49,31 @@ function TelaClientes() {
     <div>
       <h2 className='titulo'>Clientes</h2>
       <button className="open-modal-btn" onClick={openCadastroModal}>Cadastrar cliente</button>
-      <ModalClientes isOpen={modalCadastroIsOpen} onRequestClose={closeCadastroModal} onSubmit={handleSubmit} />
-      
+      <CustomModal isOpen={modalCadastroIsOpen} onClose={closeCadastroModal}>
+        <FormularioClientes onSubmit={handleSubmit} />
+      </CustomModal>
+
       <div className="table-container">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Sobrenome</th>
-              <th>Telefone</th>
-              <th>Rua</th>
-              <th>Número</th>
-              <th>Complemento</th>
-              <th>Bairro</th>
-              <th>Detalhes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {clientes.map((cliente, index) => (
-              <tr key={index}>
-                <td>{cliente.nome}</td>
-                <td>{cliente.sobrenome}</td>
-                <td>{cliente.telefone}</td>
-                <td>{cliente.rua}</td>
-                <td>{cliente.numero}</td>
-                <td>{cliente.complemento}</td>
-                <td>{cliente.bairro}</td>
-                <td><button className='btn-clientes' onClick={() => openDetalhesModal(cliente)}>Ver detalhes</button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {clienteSelecionado && (
-        <DetalhesClienteModal
-          isOpen={modalDetalhesIsOpen}
-          onRequestClose={closeDetalhesModal}
-          cliente={clienteSelecionado}
+        <CustomTable
+          data={clientes}
+          columns={[
+            { key: 'nome', header: 'Nome' },
+            { key: 'sobrenome', header: 'Sobrenome' },
+            { key: 'telefone', header: 'Telefone' },
+            { key: 'rua', header: 'Rua' },
+            { key: 'numero', header: 'Número' },
+            { key: 'complemento', header: 'Complemento' },
+            { key: 'bairro', header: 'Bairro' }
+          ]}
+          onDetails={openDetalhesModal}
         />
-      )}
+        {clienteSelecionado && (
+          <DetalhesClienteModal
+            isOpen={modalDetalhesIsOpen}
+            onRequestClose={closeDetalhesModal}
+            cliente={clienteSelecionado}
+          />
+        )}
       </div>
     </div>
   );

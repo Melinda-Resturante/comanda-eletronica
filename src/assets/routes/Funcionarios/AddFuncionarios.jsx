@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import authLoginStore from "../../../store/Auth";
 import { useDecryptUser } from "../../../security/userDecrypt";
 
 function AddFuncionarios({ isClose }) {
@@ -143,9 +142,7 @@ function AddFuncionarios({ isClose }) {
   return (
     <>
       <form onSubmit={handleSubmit} className="employee-form">
-        <fieldset className="fieldset">
           <h2 className="titleH2">Adicionar Funcionario</h2>
-
           <div className="input-group">
             <label htmlFor="" className="label">
               Nome
@@ -269,7 +266,6 @@ function AddFuncionarios({ isClose }) {
           <button type="submit" className="submit-button">
             Adicionar Funcionario
           </button>
-        </fieldset>
       </form>
     </>
   );

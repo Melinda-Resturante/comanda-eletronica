@@ -1,0 +1,42 @@
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .custom-table th, .custom-table td {
+    border: 1px solid var(--text-color);
+    padding: 10px;
+    text-align: left;
+    transition: .5s all;
+  }
+  
+  .custom-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: var(--detail-color2);
+    letter-spacing: 1px;
+    color: var(--text-color);
+  }
+  
+  .custom-table tr:nth-child(even){
+    background-color: #494646;
+    }
+
+  .btnTable {
+    background: var(--detail-color2);
+    color: var(--text-color);
+    margin: 0  8px;
+    border: solid 2px var(--text-color);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+.editar {
+    background-color: var(--detail-color);
+    color: var(--bg-color);
+  }

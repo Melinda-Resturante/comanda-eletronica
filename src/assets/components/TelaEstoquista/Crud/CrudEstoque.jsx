@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import "./CrudEstoque.css";
 import Modal from 'react-modal';
 import { useDecryptUser } from '../../../../security/userDecrypt';
+import CustomTable from '../../Custom/CustomTable/CustomTable';
+import CustomModal from '../../Custom/CustomModal/CustomModal';
 
 Modal.setAppElement('#root');
 
@@ -217,63 +218,39 @@ function CrudEstoque() {
           ))}
         </select>
       </div>
-      
-      <section className='tabela-estoque'>
-        <table id="customizacao">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Descrição</th>
-              <th>Preço</th>
-              <th>Quantidade</th>
-              <th>Categoria</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-          {estoque.map((item) => {
-            if (!categoriaSelecionada || item.categoria === categoriaSelecionada) {
-              return (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
-                  <td>{item.nome_produto}</td>
-                  <td>{item.descricao}</td>
-                  <td>{Number(item.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                  <td>{item.quantidade}</td>
-                  <td>{item.categoria}</td>
-                  <td>
-                    <button className='btn' onClick={() => handleEditarItem(item)}>Editar</button>
-                    <button className='btn' onClick={() => handleExcluirItem(item.id)}>Excluir</button>
-                  </td>
-                </tr>
-              );
-            }
-            return null;
-          })}
-          </tbody>
-        </table>
-      </section>
 
-      <Modal
-         isOpen={isModalOpen}
-         onRequestClose={() => {
-           setIsModalOpen(false);
-           setItemEditado(null);
-           setNovoItem({
-             id: '',
-             nome_produto: '',
-             descricao: '',
-             preco: '',
-             quantidade: '',
-             categoria: '',
-           });
-           setNovaCategoria(''); 
-         }}
-         contentLabel="Adicionar Item Modal"
-         className= "modal-estoque"
-       >
+      <CustomTable
+              data={estoque}
+              columns={[
+                { key: 'id', header: 'ID' },
+                { key: 'nome_produto', header: 'Nome' },
+                { key: 'descricao', header: 'Descrição' },
+                { key: 'preco', header: 'Preço' },
+                { key: 'quantidade', header: 'Quantidade' },
+                { key: 'categoria', header: 'Categoria' },
+              ]}
+              onEdit={handleEditarItem}
+              onDelete={handleExcluirItem}
+            />
+
+      <CustomModal
+            isOpen={isModalOpen}
+            onClose={() => {
+              setIsModalOpen(false);
+              setItemEditado(null);
+              setNovoItem({
+                id: '',
+                nome_produto: '',
+                descricao: '',
+                preco: '',
+                quantidade: '',
+                categoria: '',
+              });
+              setNovaCategoria('');
+            }}
+          >
       <h2>{itemEditado ? 'Editar Item' : 'Adicionar Novo Item'}</h2>
+      <label>ID</label>
       <input
         type='number'
         name='id'
@@ -282,6 +259,7 @@ function CrudEstoque() {
         onChange={handleInputChange}
         className='modal-input'
       />
+      <label>Nome</label>
       <input
         type='text'
         name='nome_produto'
@@ -290,6 +268,7 @@ function CrudEstoque() {
         onChange={handleInputChange}
         className='modal-input'
       />
+      <label>Descrição</label>
       <input
         type='text'
         name='descricao'
@@ -298,6 +277,7 @@ function CrudEstoque() {
         onChange={handleInputChange}
         className='modal-input'
       />
+      <label>Preço</label>
       <input
         type='text'
         name='preco'
@@ -306,6 +286,7 @@ function CrudEstoque() {
         onChange={handleInputChange}
         className='modal-input'
       />
+      <label>Quantidade</label>
       <input
         type='number'
         name='quantidade'
@@ -333,20 +314,7 @@ function CrudEstoque() {
       <button className='modal-button' onClick={itemEditado ? handleSalvarEdicao : handleAddItem}>
         {itemEditado ? 'Salvar' : 'Adicionar'}
       </button>
-      <button className='modal-button action-button' onClick={() => {
-        setIsModalOpen(false);
-        setItemEditado(null);
-        setNovoItem({
-          id: '',
-          nome_produto: '',
-          descricao: '',
-          preco: '',
-          quantidade: '',
-          categoria: '',
-        });
-        setNovaCategoria('');
-      }}>Fechar</button>
-    </Modal>
+    </CustomModal>
     </div>
   );
 }

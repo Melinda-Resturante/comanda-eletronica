@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import "./FormularioClientes.css";
 
 function FormularioClientes({ onSubmit }) {
     const {
