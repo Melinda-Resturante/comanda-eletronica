@@ -2,21 +2,33 @@ import React, { useState } from 'react';
 import ModalClientes from './Formulario/ModalClientes';
 import "./Formulario/FormularioClientes.css"
 import "./ListaClientes.css"
+import DetalhesClienteModal from './DetalhesClienteModal';
 
 function TelaClientes() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalCadastroIsOpen, setModalCadastroIsOpen] = useState(false);
+  const [modalDetalhesIsOpen, setModalDetalhesIsOpen] = useState(false);
   const [clientes, setClientes] = useState([]);
+  const [clienteSelecionado, setClienteSelecionado] = useState(null);
 
-  const openModal = () => {
-    setModalIsOpen(true);
+  const openCadastroModal = () => {
+    setModalCadastroIsOpen(true);
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
+  const closeCadastroModal = () => {
+    setModalCadastroIsOpen(false);
+  };
+
+  const openDetalhesModal = (cliente) => {
+    setClienteSelecionado(cliente);
+    setModalDetalhesIsOpen(true);
+  };
+
+  const closeDetalhesModal = () => {
+    setModalDetalhesIsOpen(false);
   };
 
   const handleSubmit = (data) => {
-    setClientes([...clientes, {
+    const novoCliente = {
       nome: data.nome,
       sobrenome: data.sobrenome,
       telefone: data.telefone,
@@ -24,15 +36,20 @@ function TelaClientes() {
       numero: data.endereco.numero,
       complemento: data.endereco.complemento,
       bairro: data.endereco.bairro,
-    }]);
-    closeModal();
+      cep: data.endereco.cep,
+      cidade: data.endereco.cidade,
+      estado: data.endereco.estado
+    };
+  
+    setClientes([...clientes, novoCliente]);
+    closeCadastroModal();
   };
 
   return (
     <div>
       <h2 className='titulo'>Clientes</h2>
-      <button className="open-modal-btn" onClick={openModal}>Abrir Modal</button>
-      <ModalClientes isOpen={modalIsOpen} onRequestClose={closeModal} onSubmit={handleSubmit} />
+      <button className="open-modal-btn" onClick={openCadastroModal}>Cadastrar cliente</button>
+      <ModalClientes isOpen={modalCadastroIsOpen} onRequestClose={closeCadastroModal} onSubmit={handleSubmit} />
       
       <div className="table-container">
         <table className="table">
@@ -45,6 +62,7 @@ function TelaClientes() {
               <th>Número</th>
               <th>Complemento</th>
               <th>Bairro</th>
+              <th>Detalhes</th>
             </tr>
           </thead>
           <tbody>
@@ -57,10 +75,18 @@ function TelaClientes() {
                 <td>{cliente.numero}</td>
                 <td>{cliente.complemento}</td>
                 <td>{cliente.bairro}</td>
+                <td><button className='btn-clientes' onClick={() => openDetalhesModal(cliente)}>Ver detalhes</button></td>
               </tr>
             ))}
           </tbody>
         </table>
+        {clienteSelecionado && (
+        <DetalhesClienteModal
+          isOpen={modalDetalhesIsOpen}
+          onRequestClose={closeDetalhesModal}
+          cliente={clienteSelecionado}
+        />
+      )}
       </div>
     </div>
   );

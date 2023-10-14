@@ -22,6 +22,20 @@
   }
   
   .table tr:nth-child(even) {
-    background-color: #e9e8e8;
+    background-color: #b8b5b5;
     color: black;
+  }
+
+  .btn-clientes {
+    padding: 5px 20px;
+    outline: none;
+    border: none;
+    background-color: var(--detail-color);
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+  .btn-clientes:hover{
+    background-color: #be860c;
   }

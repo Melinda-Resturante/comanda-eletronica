@@ -330,19 +330,7 @@ function CrudEstoque() {
       ))}
     </select>
   </div>
-      <div className='filtro-categoria'>
-        <label className='modal-label'>Nova Categoria:</label>
-        <input
-          type='text'
-          name='novaCategoria'
-          placeholder='Nova Categoria'
-          value={novaCategoria}
-          onChange={(e) => setNovaCategoria(e.target.value)}
-          className='modal-input categoria'
-        />
-        <button className='modal-button' onClick={handleAdicionarCategoria}>Adicionar Categoria</button>
-      </div>
-      <button className='modal-button action-button' onClick={itemEditado ? handleSalvarEdicao : handleAddItem}>
+      <button className='modal-button' onClick={itemEditado ? handleSalvarEdicao : handleAddItem}>
         {itemEditado ? 'Salvar' : 'Adicionar'}
       </button>
       <button className='modal-button action-button' onClick={() => {
