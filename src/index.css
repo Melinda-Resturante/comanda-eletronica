@@ -24,6 +24,12 @@ body {
   color: var(--text-color);
 }
 
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
 /* scroll bar personalizado */
 ::-webkit-scrollbar{
   width: 6px;

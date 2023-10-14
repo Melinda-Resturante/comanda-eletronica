@@ -26,15 +26,6 @@ let LoginStore = (set) => ({
         localStorage.removeItem('my_store_login')
 
         navigate('/')
-    },
-
-    initialize: () => {
-        const storedUser = localStorage.getItem('user')
-        if(storedUser) {
-            const userData = JSON.parse(storedUser)
-
-          set({ user: userData, authenticated: true })
-        }
     }
 })
 

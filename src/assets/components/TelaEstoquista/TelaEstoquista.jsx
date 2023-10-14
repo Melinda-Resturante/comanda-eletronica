@@ -1,6 +1,6 @@
 import React from 'react';
-import "./TelaEstoque.css";
 import CrudEstoque from './Crud/CrudEstoque';
+
 
 function TelaEstoquista() {
 

@@ -67,6 +67,7 @@ function Sidebar() {
           <li><a className='link_name' href="#">Comandas</a></li>
           <li><a href="#">Pendente</a></li>
           <li><a href="#">Em aberto</a></li>
+          <li><a href="#">Finalizadas</a></li>
           <li><a href="#">Convênio</a></li>
         </ul>
       </li>
