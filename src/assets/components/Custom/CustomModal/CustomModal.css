@@ -32,3 +32,22 @@
     display: block !important;
   }
   
+  .btnModal {
+    background: var(--detail-color2);
+    color: var(--text-color);
+    margin: 0  8px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .fechar {
+    background-color: #c90c0c;
+  }
+
+  .fechar:hover {
+    background-color: #af0707;
+  }

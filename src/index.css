@@ -14,9 +14,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family:  "Poppins", Arial, Helvetica, sans-serif;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -28,6 +25,81 @@ body {
   color: red;
   font-size: 14px;
   margin-top: 5px;
+}
+
+.btn {
+  margin: 10px  8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.btAdd,
+.btEdit {
+  background-color: #3b7fec;
+}
+
+.btAdd:hover,
+.btEdit:hover {
+  background-color: #3276e4;
+}
+
+.btn2 {
+  margin: 10px  8px;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.btCancelar {
+  background-color: #c90c0c;
+}
+
+.btCancelar:hover {
+  background-color: #af0707;
+}
+
+.btSalvar {
+  background-color: #178017;
+}
+
+.btSalvar:hover {
+  background-color: #0f690f;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  padding: 5px 15px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.inputModal {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  padding: 5px 15px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border-radius: 15px;
+  width: 100%;
+  text-align: left;
+}
+
+.item {
+  color: #af0707;
+  font-weight: bold;
 }
 
 /* scroll bar personalizado */

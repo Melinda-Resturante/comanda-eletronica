@@ -143,105 +143,105 @@ function AddFuncionarios({ isClose }) {
     <>
       <form onSubmit={handleSubmit} className="employee-form">
           <h2 className="titleH2">Adicionar Funcionario</h2>
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Nome
             </label>
-            <input type="text" placeholder="Nome" name="name" />
+            <input type="text" placeholder="Nome" name="name" className="input-group" />
           </div>
           {errors.name && <p className="error-message">{errors.name}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Sobrenome
             </label>
-            <input type="text" placeholder="Sobrenome" name="lastName" />
+            <input type="text" placeholder="Sobrenome" name="lastName" className="input-group" />
           </div>
           {errors.lastName && <p className="error-message">{errors.lastName}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               CPF
             </label>
-            <input type="text" placeholder="CPF" name="cpf" />
+            <input type="text" placeholder="CPF" name="cpf"  className="input-group" />
           </div>
           {errors.cpf && <p className="error-message">{errors.cpf}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Data de Nascimento
             </label>
-            <input type="date" name="birthDate" />
+            <input type="date" name="birthDate"  className="input-group" />
           </div>
           {errors.birthDate && <p className="error-message">{errors.birthDate}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Telefone 1
             </label>
-            <input type="tel" placeholder="Telefone 1" name="phone1" />
+            <input type="tel" placeholder="Telefone 1" name="phone1" className="input-group"  />
           </div>
           {errors.phone1 && <p className="error-message">{errors.phone1}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Telefone 2
             </label>
-            <input type="tel" placeholder="Telefone 2" name="phone2" />
+            <input type="tel" placeholder="Telefone 2" name="phone2" className="input-group" />
           </div>
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Rua
             </label>
-            <input type="text" placeholder="Rua" name="street" />
+            <input type="text" placeholder="Rua" name="street" className="input-group" />
           </div>
           {errors.street && <p className="error-message">{errors.street}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Número
             </label>
-            <input type="text" placeholder="Número" name="number" />
+            <input type="text" placeholder="Número" name="number" className="input-group" />
           </div>
           {errors.number && <p className="error-message">{errors.number}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               CEP
             </label>
-            <input type="text" placeholder="CEP" name="cep" />
+            <input type="text" placeholder="CEP" name="cep"  className="input-group" />
           </div>
           {errors.cep && <p className="error-message">{errors.cep}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Bairro
             </label>
-            <input type="text" placeholder="Bairro" name="district" />
+            <input type="text" placeholder="Bairro" name="district" className="input-group"  />
           </div>
           {errors.district && <p className="error-message">{errors.district}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Cidade
             </label>
-            <input type="text" placeholder="Cidade" name="city" />
+            <input type="text" placeholder="Cidade" name="city" className="input-group" />
           </div>
           {errors.city && <p className="error-message">{errors.city}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               Estado
             </label>
-            <input type="text" placeholder="Estado" name="state" />
+            <input type="text" placeholder="Estado" name="state" className="input-group" />
           </div>
           {errors.state && <p className="error-message">{errors.state}</p>}
 
-          <div className="input-group">
+          <div>
             <label htmlFor="" className="label">
               E-mail
             </label>
-            <input type="email" placeholder="E-mail" name="email" />
+            <input type="email" placeholder="E-mail" name="email" className="input-group" />
           </div>
 
           <div className="checkboxes">
@@ -252,6 +252,7 @@ function AddFuncionarios({ isClose }) {
               value={selectedFunctions}
               onChange={handleFunctionChange}
               name="cargo"
+              className="input-group"
             >
               <option value="">Selecione um cargo</option>
               <option value="Atendente">Atendente</option>
@@ -263,7 +264,7 @@ function AddFuncionarios({ isClose }) {
 
           {errors.selectedFunctions && <p className="error-message">{errors.selectedFunctions}</p>}
 
-          <button type="submit" className="submit-button">
+          <button type="submit" className="btn2 btAdd">
             Adicionar Funcionario
           </button>
       </form>

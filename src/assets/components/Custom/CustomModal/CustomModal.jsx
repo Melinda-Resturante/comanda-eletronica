@@ -12,7 +12,7 @@ const CustomModal = ({ isOpen, onClose, children }) => {
       <div className="custom-modal">
         <div className="modal-content">
           {children}
-          <button className="close-button" onClick={onClose}>
+          <button className="btnModal fechar" onClick={onClose}>
             Fechar
           </button>
         </div>

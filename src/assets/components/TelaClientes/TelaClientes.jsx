@@ -48,7 +48,7 @@ function TelaClientes() {
   return (
     <div>
       <h2 className='titulo'>Clientes</h2>
-      <button className="open-modal-btn" onClick={openCadastroModal}>Cadastrar cliente</button>
+      <button className='btn btAdd' onClick={openCadastroModal}>Cadastrar cliente</button>
       <CustomModal isOpen={modalCadastroIsOpen} onClose={closeCadastroModal}>
         <FormularioClientes onSubmit={handleSubmit} />
       </CustomModal>

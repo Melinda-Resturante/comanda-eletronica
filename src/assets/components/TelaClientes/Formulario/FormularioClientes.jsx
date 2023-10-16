@@ -42,7 +42,9 @@ function FormularioClientes({ onSubmit }) {
           control={control}
           defaultValue=""
           rules={{ required: 'Campo obrigatório' }}
-          render={({ field }) => <input {...field} />}
+          render={({ field }) => <input {...field} 
+          className="input-group"
+          />}
         />
         {errors.nome && <span className="error-message">{errors.nome.message}</span>}
       </div>
@@ -53,7 +55,9 @@ function FormularioClientes({ onSubmit }) {
           control={control}
           defaultValue=""
           rules={{ required: 'Campo obrigatório' }}
-          render={({ field }) => <input {...field} />}
+          render={({ field }) => <input {...field} 
+          className="input-group"
+          />}
         />
         {errors.sobrenome && <span className="error-message">{errors.sobrenome.message}</span>}
       </div>
@@ -64,7 +68,9 @@ function FormularioClientes({ onSubmit }) {
           control={control}
           defaultValue=""
           rules={{ required: 'Campo obrigatório' }}
-          render={({ field }) => <input {...field} />}
+          render={({ field }) => <input {...field} 
+          className="input-group"
+          />}
         />
         {errors.telefone && <span className="error-message">{errors.telefone.message}</span>}
       </div>
@@ -77,7 +83,9 @@ function FormularioClientes({ onSubmit }) {
           control={control}
           defaultValue=""
           rules={{ required: 'Campo obrigatório' }}
-          render={({ field }) => <input {...field} onBlur={(e) => handleCEPChange(e.target.value)} />}
+          render={({ field }) => <input {...field} onBlur={(e) => handleCEPChange(e.target.value)} 
+          className="input-group"
+          />}
         />
         {errors.cep && <span className="error-message">{errors.cep.message}</span>}
         </div>
@@ -88,7 +96,9 @@ function FormularioClientes({ onSubmit }) {
             control={control}
             defaultValue=""
             rules={{ required: 'Campo obrigatório' }}
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => <input {...field} 
+            className="input-group"
+            />}
           />
           {errors.rua && <span className="error-message">{errors.rua.message}</span>}
         </div>
@@ -99,7 +109,9 @@ function FormularioClientes({ onSubmit }) {
             control={control}
             defaultValue=""
             rules={{ required: 'Campo obrigatório' }}
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => <input {...field} 
+            className="input-group"
+            />}
           />
           {errors.numero && <span className="error-message">{errors.numero.message}</span>}
         </div>
@@ -109,7 +121,9 @@ function FormularioClientes({ onSubmit }) {
             name="endereco.complemento"
             control={control}
             defaultValue=""
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => <input {...field} 
+            className="input-group"
+            />}
           />
         </div>
         <div>
@@ -119,7 +133,9 @@ function FormularioClientes({ onSubmit }) {
             control={control}
             defaultValue=""
             rules={{ required: 'Campo obrigatório' }}
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => <input {...field} 
+            className="input-group"
+            />}
           />
           {errors.bairro && <span className="error-message">{errors.bairro.message}</span>}
         </div>
@@ -130,7 +146,9 @@ function FormularioClientes({ onSubmit }) {
             control={control}
             defaultValue=""
             rules={{ required: 'Campo obrigatório' }}
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => <input {...field} 
+            className="input-group"
+            />}
           />
           {errors.cidade && <span className="error-message">{errors.cidade.message}</span>}
         </div>
@@ -141,12 +159,14 @@ function FormularioClientes({ onSubmit }) {
             control={control}
             defaultValue=""
             rules={{ required: 'Campo obrigatório' }}
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => <input {...field} 
+            className="input-group"
+            />}
           />
           {errors.estado && <span className="error-message">{errors.estado.message}</span>}
         </div>
       </div>
-      <button type="submit">Cadastrar</button>
+      <button className='btn2 btAdd' type="submit">Cadastrar</button>
     </form>
   );
 }

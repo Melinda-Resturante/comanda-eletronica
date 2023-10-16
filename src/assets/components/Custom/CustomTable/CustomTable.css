@@ -40,3 +40,31 @@
     background-color: var(--detail-color);
     color: var(--bg-color);
   }
+
+  .editar:hover {
+    background-color: #d49409;
+  }
+
+.deletar {
+  background-color: #c90c0c;
+}
+
+.deletar:hover {
+  background-color: #af0707;
+}
+
+.detalhes {
+  background-color: #178017;
+}
+
+.detalhes:hover {
+  background-color: #0f690f;
+}
+
+.senha {
+  background-color: #3b7fec;
+}
+
+.senha:hover {
+  background-color: #3276e4;
+}

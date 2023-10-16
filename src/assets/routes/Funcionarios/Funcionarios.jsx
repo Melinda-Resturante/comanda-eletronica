@@ -27,18 +27,16 @@ function Funcionarios() {
   return (
     <div className="ContainerFuncionarios">
       <div>
-        {/* CustomModal para adicionar funcionários */}
         <CustomModal isOpen={modalIsOpen} onClose={closeAddModal}>
           <AddFuncionarios isClose={closeAddModal} />
         </CustomModal>
 
-        {/* CustomModal para editar funcionários */}
         <CustomModal isOpen={modalEditIsOpen} onClose={closeEditModal}>
           <EditFuncionarios onClose={closeEditModal} />
         </CustomModal>
       </div>
       <h1 className='titleh1'>Funcionários</h1>
-      <button className='btnFunc' onClick={openAddModal}>Adicionar Funcionário</button>
+      <button className='btn btAdd' onClick={openAddModal}>Adicionar Funcionário</button>
      
       <FuncionarioList editModal={openEditModal} />
     </div>
