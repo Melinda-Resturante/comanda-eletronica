@@ -199,8 +199,8 @@ function CrudEstoque() {
   return (
     <div className='crud'>
       <div className='formulario'>
-        <button className='buttonCrud' onClick={() => setIsModalOpen(true)}>Adicionar Item</button>
-        <button className='buttonCrud' onClick={handleOrdenarItens}>Ordenar por ID</button>
+        <button className='btn btAdd' onClick={() => setIsModalOpen(true)}>Adicionar Item</button>
+        <button className='btn btAdd' onClick={handleOrdenarItens}>Ordenar por ID</button>
       </div>
       
       <div className='filtro-categoria'>
@@ -250,68 +250,70 @@ function CrudEstoque() {
             }}
           >
       <h2>{itemEditado ? 'Editar Item' : 'Adicionar Novo Item'}</h2>
-      <label>ID</label>
-      <input
-        type='number'
-        name='id'
-        placeholder='ID'
-        value={novoItem.id}
+      <div>
+        <label>ID</label>
+        <input
+          type='number'
+          name='id'
+          placeholder='ID'
+          value={novoItem.id}
+          onChange={handleInputChange}
+          className="input-group"
+        />
+        <label>Nome</label>
+        <input
+          type='text'
+          name='nome_produto'
+          placeholder='Nome'
+          value={novoItem.nome_produto}
+          onChange={handleInputChange}
+          className="input-group"
+        />
+        <label>Descrição</label>
+        <input
+          type='text'
+          name='descricao'
+          placeholder='Descrição'
+          value={novoItem.descricao}
+          onChange={handleInputChange}
+          className="input-group"
+        />
+        <label>Preço</label>
+        <input
+          type='text'
+          name='preco'
+          placeholder='Preço'
+          value={novoItem.preco}
+          onChange={handleInputChange}
+          className="input-group"
+        />
+        <label>Quantidade</label>
+        <input
+          type='number'
+          name='quantidade'
+          placeholder='Quantidade'
+          value={novoItem.quantidadeLocal}
+          onChange={handleInputChange}
+          className="input-group"
+        />
+        <div className='filtro-categoria'>
+      <label>Categoria:</label>
+      <select
+        name='categoria'
+        value={novoItem.categoria}
         onChange={handleInputChange}
-        className='modal-input'
-      />
-      <label>Nome</label>
-      <input
-        type='text'
-        name='nome_produto'
-        placeholder='Nome'
-        value={novoItem.nome_produto}
-        onChange={handleInputChange}
-        className='modal-input'
-      />
-      <label>Descrição</label>
-      <input
-        type='text'
-        name='descricao'
-        placeholder='Descrição'
-        value={novoItem.descricao}
-        onChange={handleInputChange}
-        className='modal-input'
-      />
-      <label>Preço</label>
-      <input
-        type='text'
-        name='preco'
-        placeholder='Preço'
-        value={novoItem.preco}
-        onChange={handleInputChange}
-        className='modal-input'
-      />
-      <label>Quantidade</label>
-      <input
-        type='number'
-        name='quantidade'
-        placeholder='Quantidade'
-        value={novoItem.quantidadeLocal}
-        onChange={handleInputChange}
-        className='modal-input'
-      />
-      <div className='filtro-categoria'>
-    <label>Categoria:</label>
-    <select
-      name='categoria'
-      value={novoItem.categoria}
-      onChange={handleInputChange}
-      className='modal-select'
-    >
-      <option value=''>Selecione uma categoria</option>
-      {categorias.map((categoria) => (
-        <option key={categoria} value={categoria}>
-          {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
-        </option>
-      ))}
-    </select>
+        className="input-group"
+      >
+        <option value=''>Selecione uma categoria</option>
+        {categorias.map((categoria) => (
+          <option key={categoria} value={categoria}>
+            {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+          </option>
+        ))}
+      </select>
+    </div>
   </div>
-      <button className='modal-button' onClick={itemEditado ? handleSalvarEdicao : handleAddItem}>
+      <button className='btn2 btSalvar' onClick={itemEditado ? handleSalvarEdicao : handleAddItem}>
         {itemEditado ? 'Salvar' : 'Adicionar'}
       </button>
     </CustomModal>

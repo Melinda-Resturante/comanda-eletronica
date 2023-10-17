@@ -23,7 +23,7 @@ const SenhaModal = ({ isOpen, onClose, onSave, children }) => {
       body: JSON.stringify(body)
     };
 
-    fetch('https://comanda-eletronica-api.vercel.app/funcionarios/1006', init)
+    fetch('https://comanda-eletronica-api.vercel.app/funcionarios/auth/novologin', init)
       .then((resp) => resp.json())
       .then((json) => console.log(json))
       .catch((error) => console.log(error));
@@ -34,13 +34,12 @@ const SenhaModal = ({ isOpen, onClose, onSave, children }) => {
       <div className="modal-content">
         <form className='employee-form formSenha' onSubmit={handleSubmit(handleForm)}>
           <h2 className='titleH2'>Cadastrar Senha</h2>
+          <label className="label">CPF</label>
           <input type="text" placeholder="CPF" {...register('cpf')} className='input-group' />
+          <label className="label">Senha</label>
           <input type="password" placeholder="Senha" {...register('senha')} className='input-group' />
-          <button className='btnSalvar'>Salvar</button>
+          <button className='btn2 btSalvar'>Salvar</button>
         </form>
-        <div className='btns dSenha'>
-          <button onClick={onClose} className='btnCalcel'>Cancelar</button>
-        </div>
         {children}
       </div>
     </CustomModal>
