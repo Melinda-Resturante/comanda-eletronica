@@ -40,12 +40,17 @@ function CrudEstoque() {
     })
     .then(response => response.json())
     .then(data => {
-      setEstoque(data);
+      if (Array.isArray(data)) {
+        setEstoque(data);
+      } else {
+        console.error('Erro: os dados retornados não são um array:', data);
+      }
     })
     .catch(error => {
       console.error('Erro ao buscar os produtos:', error);
     });
   };
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

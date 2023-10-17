@@ -47,7 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: "clientes",
-        element: <TelaClientes/>
+        element: <Private><TelaClientes/></Private>
       },
     ],
   },
