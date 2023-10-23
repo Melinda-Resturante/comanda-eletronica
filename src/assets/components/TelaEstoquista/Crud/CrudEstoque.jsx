@@ -10,6 +10,8 @@ function CrudEstoque() {
   const { decryptUser } = useDecryptUser();
   const authToken = decryptUser.acssesToken;
 
+  const categoriasPermitidas = ['alomoço', 'bebida alcólica', 'bebida não alcólica', 'doces'];
+
   const [estoque, setEstoque] = useState([]);
   const [novoItem, setNovoItem] = useState({
     id: '',
@@ -18,14 +20,18 @@ function CrudEstoque() {
     preco: '',
     quantidade: '', 
     categoria: '',   
-  });
+  });  
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState('');
   const [ordenacao, setOrdenacao] = useState('');
   const [itemEditado, setItemEditado] = useState(null);
-  const [novaCategoria, setNovaCategoria] = useState('');
-  const [categorias, setCategorias] = useState([]);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState('');
+  const [categorias, setCategorias] = useState([
+    'alomoço',
+    'bebida alcólica',
+    'bebida não alcólica',
+    'doces',
+  ]);
 
   useEffect(() => {
     console.log(estoque);
@@ -46,6 +52,7 @@ function CrudEstoque() {
         console.error('Erro: os dados retornados não são um array:', data);
       }
     })
+    
     .catch(error => {
       console.error('Erro ao buscar os produtos:', error);
     });
@@ -59,22 +66,7 @@ function CrudEstoque() {
       [name]: value,
     });
   };
-
-  const handleCategoriaChange = (e) => {
-    const categoria = e.target.value;
-    setCategoriaSelecionada(categoria);
-  };
-
-  const handleAdicionarCategoria = () => {
-    if (novaCategoria.trim() === '') {
-      alert('Por favor, insira um nome para a categoria.');
-      return;
-    }
-    setCategorias([...categorias, novaCategoria]);
-
-    setNovaCategoria('');
-    setIsModalOpen(false);
-  };
+;
 
   const handleOrdenarItens = () => {
     const novoEstoque = [...estoque];
@@ -89,47 +81,65 @@ function CrudEstoque() {
   };
 
   const handleAddItem = () => {
-    if (
-      !novoItem.nome_produto ||
-      !novoItem.descricao ||
-      !novoItem.preco ||
-      !novoItem.quantidade ||
-      !novoItem.categoria
-    ) {
-      alert("Preencha todos os campos antes de adicionar.");
-      return;
-    }
+  if (
+    !novoItem.nome_produto ||
+    !novoItem.descricao ||
+    !novoItem.preco ||
+    !novoItem.quantidade ||
+    !novoItem.categoria
+  ) {
+    alert('Preencha todos os campos antes de adicionar.');
+    return;
+  }
 
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${authToken}`,
-      },
-      body: JSON.stringify(novoItem),
-    };
+  if (!categoriasPermitidas.includes(novoItem.categoria.toLowerCase())) {
+    alert('Por favor, selecione uma categoria válida: almoço, bebida alcóolica, bebida não alcóolica ou doces.');
+    return;
+  }
 
+  const id = parseInt(novoItem.id);
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${authToken}`,
+    },
+    body: JSON.stringify({
+      id: id, 
+      nome_produto: novoItem.nome_produto,
+      descricao: novoItem.descricao,
+      preco: novoItem.preco,
+      quantidade: novoItem.quantidade,
+      categoria: novoItem.categoria.toLowerCase(),
+    }),
+  };
+  
     fetch('https://comanda-eletronica-api.vercel.app/produtos', requestOptions)
       .then(response => response.json())
       .then(data => {
-        fetchProdutos();
-        setIsModalOpen(false); 
+        if (data.id) {
+          setEstoque(prevEstoque => [...prevEstoque, data]);
+          setIsModalOpen(false);
+          setNovoItem({
+            id: '',
+            nome_produto: '',
+            descricao: '',
+            preco: '',
+            quantidade: '',
+            categoria: '',
+          });
+        } else {
+          console.error('Erro ao adicionar o produto:', data);
+          alert('Erro ao adicionar o produto. Por favor, tente novamente mais tarde.');
+        }
       })
-      
       .catch(error => {
         console.error('Erro ao adicionar o produto:', error);
         alert('Erro ao adicionar o produto. Por favor, tente novamente mais tarde.');
       });
-
-    setNovoItem({
-      nome_produto: '',
-      descricao: '',
-      preco: '',
-      quantidade: '',
-      categoria: '',
-    });
   };
-
+  
   const handleExcluirItem = (id) => {
     const requestOptions = {
       method: 'DELETE',
@@ -152,6 +162,7 @@ function CrudEstoque() {
   };
 
   const handleEditarItem = (item) => {
+    console.log("Item a ser editado:", item);
     setNovoItem({
       id: item.id,
       nome_produto: item.nome_produto,
@@ -162,8 +173,10 @@ function CrudEstoque() {
     });
     setCategoriaSelecionada(item.categoria); 
     setItemEditado(item);
-    setIsModalOpen(true); 
+    console.log("Valor de itemEditado:", itemEditado); 
+    setIsModalOpen(true);
   };
+  
   
   const handleSalvarEdicao = () => {
     if (!novoItem.nome_produto || !novoItem.descricao || !novoItem.preco || !novoItem.quantidade || !novoItem.categoria) {
@@ -186,13 +199,14 @@ function CrudEstoque() {
         fetchProdutos();
         setIsModalOpen(false); 
         setNovoItem({
-          id: '',
+          id: null,
           nome_produto: '',
           descricao: '',
           preco: '',
           quantidade: '',
           categoria: '',
         });
+        
         setItemEditado(null);
       })
       .catch(error => {
@@ -200,7 +214,11 @@ function CrudEstoque() {
         alert('Erro ao editar o produto. Por favor, tente novamente mais tarde.');
       });
   };
-  
+
+  const handleSelecionarCategoria = (categoria) => {
+    setCategoriaSelecionada(categoria);
+  };
+
   return (
     <div className='crud'>
       <div className='formulario'>
@@ -209,21 +227,21 @@ function CrudEstoque() {
       </div>
       
       <div className='filtro-categoria'>
-        <label>Filtrar por Categoria:</label>
+        <label>Categoria:</label>
         <select
-          name='filtroCategoria'
+          name='categoria'
           value={categoriaSelecionada}
-          onChange={handleCategoriaChange}
+          onChange={(e) => handleSelecionarCategoria(e.target.value)}
+          className="input-group"
         >
-          <option value=''>Todas</option>
+          <option value=''>Selecione uma categoria</option>
           {categorias.map((categoria) => (
-            <option key={categoria} value={categoria}>
+            <option key={categoria} value={categoria.toLowerCase()}>
               {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
             </option>
           ))}
         </select>
-      </div>
-
+    </div>
       <CustomTable
               data={estoque}
               columns={[
@@ -261,10 +279,11 @@ function CrudEstoque() {
           type='number'
           name='id'
           placeholder='ID'
-          value={novoItem.id}
+          value={novoItem.id || ''}
           onChange={handleInputChange}
           className="input-group"
         />
+
         <label>Nome</label>
         <input
           type='text'
@@ -297,26 +316,27 @@ function CrudEstoque() {
           type='number'
           name='quantidade'
           placeholder='Quantidade'
-          value={novoItem.quantidadeLocal}
+          value={novoItem.quantidade}
           onChange={handleInputChange}
           className="input-group"
         />
-        <div className='filtro-categoria'>
-      <label>Categoria:</label>
-      <select
-        name='categoria'
-        value={novoItem.categoria}
-        onChange={handleInputChange}
-        className="input-group"
-      >
-        <option value=''>Selecione uma categoria</option>
-        {categorias.map((categoria) => (
-          <option key={categoria} value={categoria}>
-            {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
-          </option>
-        ))}
-      </select>
-    </div>
+
+      <div className='filtro-categoria'>
+        <label>Categoria:</label>
+        <select
+          name='categoria'
+          value={categoriaSelecionada}
+          onChange={(e) => handleSelecionarCategoria(e.target.value)}
+          className="input-group"
+        >
+          <option value=''>Selecione uma categoria</option>
+          {categorias.map((categoria) => (
+            <option key={categoria} value={categoria.toLowerCase()}>
+              {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+            </option>
+          ))}
+        </select>
+      </div>
   </div>
       <button className='btn2 btSalvar' onClick={itemEditado ? handleSalvarEdicao : handleAddItem}>
         {itemEditado ? 'Salvar' : 'Adicionar'}
