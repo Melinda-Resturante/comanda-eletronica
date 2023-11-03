@@ -40,14 +40,29 @@
     transition: all 200ms ease-in-out;
 }
 
-.available {
-    background-color: rgb(32, 66, 117);
+.card h1 {
+    font-size: 2.3rem;
 }
 
-.busy {
+.aberto {
+    background-color: #ca9c13;
+}
+
+.pendente{
+    background-color: rgb(175, 175, 22);
+}
+
+.livre {
+    background-color: #03a52c;
+}
+
+.convenio {
+    background-color: #007bff;
+}
+
+.finalizadas {
     background-color: var(--detail-color2);
 }
-
 
 
 @media screen and (max-width: 420px) {

@@ -65,9 +65,10 @@ function Sidebar() {
         </div>
         <ul className='sub-menu'>
           <li><a className='link_name' href="#">Comandas</a></li>
-          <li><a href="#">Pendente</a></li>
-          <li><a href="#">Em aberto</a></li>
-          <li><a href="#">Convênio</a></li>
+          <li><Link to='/comandas/pendente'>Pendente</Link></li>
+          <li><Link to='/comandas/aberto'>Em aberto</Link></li>
+          <li><Link to='/comandas/convenio'>Convênio</Link></li>
+          <li><Link to='/comandas/finalizadas'>Finalizadas</Link></li>
         </ul>
       </li>
 

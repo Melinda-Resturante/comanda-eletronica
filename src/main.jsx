@@ -14,6 +14,11 @@ import Funcionarios from './assets/routes/Funcionarios/Funcionarios.jsx';
 import TelaClientes from './assets/components/TelaClientes/TelaClientes.jsx';
 import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx';
 import Private from './assets/routes/PrivateRoutes/Private.jsx';
+import Comandas from './assets/components/Comandas/Comandas.jsx';
+import Aberto from './assets/components/Comandas/Aberto/Aberto.jsx';
+import Convenio from './assets/components/Comandas/Convenio/Convenio.jsx';
+import Pendente from './assets/components/Comandas/Pendente/Pendente.jsx';
+import Finalizadas from './assets/components/Comandas/Finalizadas/Finalizadas.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +32,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "atendente",
-        element: <Private> <TelaAtendente/> </Private>  
+        element: <Private> <TelaAtendente/> </Private>,
       },
       {
         path: "caixa",
@@ -48,6 +53,28 @@ const router = createBrowserRouter([
       {
         path: "clientes",
         element: <TelaClientes/>
+      },
+      {
+        path: "comandas",
+        element: <Comandas />,
+        children: [
+          {
+            path: 'aberto',
+            element: <Aberto />
+          },
+          {
+            path: 'convenio',
+            element: <Convenio />
+          },
+          {
+            path: 'pendente',
+            element: <Pendente />
+          },
+          {
+            path: 'finalizadas',
+            element: <Finalizadas />
+          }
+        ]
       },
     ],
   },
