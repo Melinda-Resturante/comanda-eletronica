@@ -32,27 +32,31 @@ const router = createBrowserRouter([
     children: [
       {
         path: "atendente",
+<<<<<<< HEAD
         element: <Private> <TelaAtendente/> </Private>,
+=======
+        element:  <TelaAtendente/> 
+>>>>>>> 67b30356ed55b12ec0a3867f49a7f763129198b8
       },
       {
         path: "caixa",
-        element: <Private> <TelaCaixa/> </Private>
+        element: <TelaCaixa/> 
       },
       {
         path: "gerente",
-        element: <Private> <TelaGerente /> </Private>
+        element: <TelaGerente /> 
       },
       {
         path: "estoquista",
-        element: <Private> <TelaEstoquista/> </Private>
+        element: <TelaEstoquista/> 
       },
       {
         path: "funcionarios",
-        element: <Private> <Funcionarios/> </Private>
+        element: <Funcionarios/> 
       },
       {
         path: "clientes",
-        element: <TelaClientes/>
+        element:<TelaClientes/>
       },
       {
         path: "comandas",

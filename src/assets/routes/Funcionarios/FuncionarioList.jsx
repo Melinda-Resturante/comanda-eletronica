@@ -3,6 +3,7 @@ import SenhaModal from './SenhaModal .jsx';
 import PerfilModal from './PerfilModal .jsx';
 import useFuncionarioStore from "../../../store/funcionario";
 import { useDecryptUser } from '../../../security/userDecrypt.js';
+import CustomTable from "../../components/Custom/CustomTable/CustomTable.jsx"
 
 const FuncionarioList = ({ editModal }) => {
   
@@ -16,6 +17,17 @@ const FuncionarioList = ({ editModal }) => {
   const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
   const [senhaModalOpen, setSenhaModalOpen] = useState(false);
 
+  const handleCadastrarSenhaClick = (funcionario) => {
+    // Lógica para cadastrar senha
+    console.log("Cadastrar senha para o funcionário:", funcionario);
+    // Faça algo com as informações do funcionário, se necessário
+    setSenhaModalOpen(true);
+  };
+  
+
+  const customActions = (item) => (
+    <button className='btn-clientes' onClick={() => handleCadastrarSenhaClick(item)}>Cadastrar Senha</button>
+  );
 
   useEffect(() => {
     if (authToken) {
@@ -27,7 +39,6 @@ const FuncionarioList = ({ editModal }) => {
         .then((response) => response.json())
         .then((data) => {
           setFuncionarios(data);
-          console.log(funcionarios)
           setIsLoading(false);
         })
         .catch((error) => {
@@ -67,10 +78,6 @@ const FuncionarioList = ({ editModal }) => {
     }
   };
 
-  const handleCadastrarSenhaClick = () => {
-    setSenhaModalOpen(true);
-  };
-
   const handleSalvarSenha = (novaSenha) => {
     console.log("Nova senha a ser salva:", novaSenha);
 
@@ -93,29 +100,25 @@ const FuncionarioList = ({ editModal }) => {
     }
   }
 
+  const columns = [
+    { key: 'id', header: 'ID' },
+    { key: 'nome', header: 'Nome' },
+    { key: 'sobrenome', header: 'Sobrenome' },
+    { key: 'cargo', header: 'Cargo', formatter: (cargoNumber) => mapCargo(cargoNumber) },
+  ];
+  
+   
+
   return (
     <div>
-      {funcionarios?.map((funcionario, index) => (
-        <div key={index} className="listFunc">
-          <p>
-            {funcionario.id} - {funcionario.nome} {funcionario.sobrenome} - {mapCargo(funcionario.cargo)}
-          </p>
-          <div className="btns">
-            <button onClick={() => handleEdit(funcionario, index)} className="btnEdit">
-              Editar
-            </button>
-            <button onClick={() => handleDelete(index, funcionario.id)} className="btnDelete">
-              Deletar
-            </button>
-            <button className="btnProfile" onClick={() => { setFuncionarioSelecionado(funcionario); setPerfilModalOpen(true); }}>
-              Ver Perfil
-            </button>
-            <button className="btnSenha" onClick={handleCadastrarSenhaClick}>
-              Cadastrar senha
-            </button>
-          </div>
-        </div>
-      ))}
+      <CustomTable
+        data={funcionarios}
+        columns={columns}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        onDetails={(funcionario) => { setFuncionarioSelecionado(funcionario); setPerfilModalOpen(true); }}
+      onPassword={handleCadastrarSenhaClick}
+      />
 
 
       <SenhaModal
