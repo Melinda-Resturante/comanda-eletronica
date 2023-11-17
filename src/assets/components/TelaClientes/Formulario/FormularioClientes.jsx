@@ -75,7 +75,7 @@ function FormularioClientes({ onSubmit }) {
         {errors.telefone && <span className="error-message">{errors.telefone.message}</span>}
       </div>
       <div>
-        <label>Endereço</label>
+        
         <div>
           <label>CEP</label>
           <Controller

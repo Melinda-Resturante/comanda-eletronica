@@ -6,12 +6,6 @@ const TelaComandas = ({ stateColor }) => {
     const [open, setOpen] = useState(false)
     const [fakeData, setFakeData] = useState('')
 
-    switch (stateColor) {
-        case 'busy':
-            return 'busy'
-        case 'available': 
-            return 'available'
-    }
     
     const generateFakeData = (count) => {
       const data = [];
@@ -19,13 +13,12 @@ const TelaComandas = ({ stateColor }) => {
         data.push({
           id: i,
           task: `card ${i}`,
-          state: i % 3 === 0 ? 'busy' : 'available'
         });
       }
       return data;
     };
   
-    const fakeDataCard = generateFakeData(300);
+    const fakeDataCard = generateFakeData(100);
   
     const handleOpenModal = (id, state, task) => {
       const data = {

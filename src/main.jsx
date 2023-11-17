@@ -32,11 +32,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "atendente",
-<<<<<<< HEAD
         element: <Private> <TelaAtendente/> </Private>,
-=======
-        element:  <TelaAtendente/> 
->>>>>>> 67b30356ed55b12ec0a3867f49a7f763129198b8
       },
       {
         path: "caixa",

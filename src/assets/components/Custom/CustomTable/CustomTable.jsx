@@ -7,24 +7,24 @@ const CustomTable = ({ data, columns, onEdit, onDelete, onDetails, onPassword })
     <table className="custom-table">
       <thead>
         <tr>
-          {columns.map(column => (
+          {columns?.map(column => (
             <th key={column.key}>{column.header}</th>
           ))}
           {(onEdit || onDelete || onDetails) && <th>Ações</th>}
         </tr>
       </thead>
       <tbody>
-        {data.map(item => (
+        {data && data?.map((item, index) => (
           <tr key={item.id}>
-            {columns.map(column => (
+            {columns?.map(column => (
               <td key={column.key}>
                 {column.key === 'cargo' ? column.formatter(item[column.key]) : item[column.key]}
               </td>
             ))}
             {(onEdit || onDelete || onDetails) && (
               <td>
-                {onEdit && <button className='btnTable editar' onClick={() => onEdit(item)}>Editar</button>}
-                {onDelete && <button className='btnTable deletar' onClick={() => onDelete(item.id)}>Excluir</button>}
+                {onEdit && <button className='btnTable editar' onClick={() => onEdit(item, index)}>Editar</button>}
+                {onDelete && <button className='btnTable deletar' onClick={() => onDelete(index)}>Excluir</button>}
                 {onDetails && <button className='btnTable detalhes' onClick={() => onDetails(item)}>Ver detalhes</button>}
                 {onPassword && <button className='btnTable senha' onClick={() => onPassword(item)}>Cadastrar Senha</button>}
               </td>
