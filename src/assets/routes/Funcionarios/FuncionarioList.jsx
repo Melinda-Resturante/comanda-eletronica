@@ -9,6 +9,7 @@ const FuncionarioList = ({ editModal }) => {
   
   const { decryptUser } = useDecryptUser()
   const authToken = decryptUser.acssesToken;
+  console.log(authToken)
 
   const [isLoading, setIsLoading] = useState(true);
   const [funcionarios, setFuncionarios] = useState([]);
@@ -108,7 +109,6 @@ const FuncionarioList = ({ editModal }) => {
   ];
   
    
-
   return (
     <div>
       <CustomTable

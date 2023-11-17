@@ -30,7 +30,7 @@ function Modal({ isOpen, setOpen, data }) {
 
                     <nav className='search-container'>
                         <h3>Pesquisar: </h3>
-                        <input type='search' placeholder='Search...'/>
+                        <input type='search' placeholder='Pesquisar...'/>
                     </nav>
 
                      <Table  setOpenDrop={setOpenDrop} openDrop={openDrop} />

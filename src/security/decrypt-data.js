@@ -6,6 +6,7 @@ export const dataDecrypt = (value) => {
     const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
 
     try {
+        if(decryptedData)
         return JSON.parse(decryptedData);
     } catch (error) {
         console.error("Erro ao fazer o parse do JSON:", error);
