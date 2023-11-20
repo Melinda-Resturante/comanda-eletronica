@@ -10,7 +10,7 @@ import TelaAtendente from './assets/components/TelaAtendente/TelaAtendente.jsx';
 import TelaCaixa from './assets/components/TelaCaixa/TelaCaixa.jsx';
 import TelaGerente from './assets/components/TelaGerente/TelaGerente.jsx';
 import TelaEstoquista from './assets/components/TelaEstoquista/TelaEstoquista.jsx';
-import Funcionarios from './assets/routes/Funcionarios/Funcionarios.jsx';
+import Funcionarios from '../src/assets/components/Funcionarios/Funcionarios.jsx';
 import TelaClientes from './assets/components/TelaClientes/TelaClientes.jsx';
 import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx';
 import Private from './assets/routes/PrivateRoutes/Private.jsx';
@@ -19,6 +19,8 @@ import Aberto from './assets/components/Comandas/Aberto/Aberto.jsx';
 import Convenio from './assets/components/Comandas/Convenio/Convenio.jsx';
 import Pendente from './assets/components/Comandas/Pendente/Pendente.jsx';
 import Finalizadas from './assets/components/Comandas/Finalizadas/Finalizadas.jsx';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './services/queryClient.js';
 
 const router = createBrowserRouter([
   {
@@ -84,6 +86,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
     <RouterProvider router={router}/>
+    </QueryClientProvider>
   </React.StrictMode>,
 )
