@@ -13,7 +13,7 @@ export const schemaFuncionarios = z.object({
 
     telefone1: z.string().min(1, 'O campo Telefone 1 não pode ser vazio').max(11, 'Número inválido'),
 
-    telefone2: z.string().min(1, 'O campo Telefone 2 não pode ser vazio').max(11, 'Número inválido'),
+    telefone2: z.string(),
 
     rua: z.string().min(1, 'O campo Rua não pode ser vazio'),
 

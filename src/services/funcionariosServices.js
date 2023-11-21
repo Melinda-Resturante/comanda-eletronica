@@ -1,29 +1,29 @@
-import { useDecryptUser } from "../security/userDecrypt";
-import axios from 'axios' 
+import axios from 'axios';
 
 export const funcionariosServices = () => {
-
-    const { decryptUser } = useDecryptUser()
-
-    const authToken = decryptUser.acssesToken;
+    const url = 'https://comanda-eletronica-api.vercel.app';
+    
+    const createFuncionario = async (data, authToken) => {
+      console.log('Auth Token (createFuncionario):', authToken);
+      try {
+        const response = await axios.post(
+          `${url}/funcionarios`,
+          data,
+          {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+              "Content-Type": 'application/json'
+            }
+          }
+          );
+          return response.data;
+        } catch (error) {
+        throw new Error(`Erro ao criar funcionário: ${error.message}`);
+      }
+    };
     
 
-const url = 'https://comanda-eletronica-api.vercel.app'
-
-const createFuncionario = (data) => {
-
-    const response = axios.post(`${url}/funcionarios`, data, { headers: {
-        Authorization: `Bearer ${authToken}`,
-        "Content-Type": 'application/json'
-    } })
-
-    return response.data
-
-  } 
-
-  return {
-    createFuncionario
-  }
-}   
-
-
+    return {
+        createFuncionario
+    };
+};

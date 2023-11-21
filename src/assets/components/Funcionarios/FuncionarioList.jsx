@@ -9,7 +9,6 @@ const FuncionarioList = ({ editModal }) => {
   
   const { decryptUser } = useDecryptUser()
   const authToken = decryptUser.acssesToken;
-  console.log(authToken)
 
   const [isLoading, setIsLoading] = useState(true);
   const [funcionarios, setFuncionarios] = useState([]);
@@ -19,9 +18,9 @@ const FuncionarioList = ({ editModal }) => {
   const [senhaModalOpen, setSenhaModalOpen] = useState(false);
 
   const handleCadastrarSenhaClick = (funcionario) => {
-    // Lógica para cadastrar senha
+
     console.log("Cadastrar senha para o funcionário:", funcionario);
-    // Faça algo com as informações do funcionário, se necessário
+
     setSenhaModalOpen(true);
   };
   
