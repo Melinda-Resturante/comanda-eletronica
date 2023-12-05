@@ -23,7 +23,7 @@ function Funcionarios() {
   const closeEditModal = () => {
     setModalEditIsOpen(false);
   };
-  
+
   return (
     <div className="ContainerFuncionarios">
       <div>
@@ -35,9 +35,11 @@ function Funcionarios() {
           <EditFuncionarios onClose={closeEditModal} />
         </CustomModal>
       </div>
-      <h1 className='titleh1'>Funcionários</h1>
-      <button className='btn btAdd' onClick={openAddModal}>Adicionar Funcionário</button>
-     
+      <h1 className="titleh1">Funcionários</h1>
+      <button className="btn btAdd" onClick={openAddModal}>
+        Adicionar Funcionário
+      </button>
+
       <FuncionarioList editModal={openEditModal} />
     </div>
   );

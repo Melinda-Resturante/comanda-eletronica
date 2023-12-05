@@ -4,6 +4,8 @@ import App from './App.jsx'
 import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './services/queryClient.js';
 
 import TelaLogin from './assets/components/TelaLogin/Login.jsx';
 import TelaAtendente from './assets/components/TelaAtendente/TelaAtendente.jsx';
@@ -19,8 +21,6 @@ import Aberto from './assets/components/Comandas/Aberto/Aberto.jsx';
 import Convenio from './assets/components/Comandas/Convenio/Convenio.jsx';
 import Pendente from './assets/components/Comandas/Pendente/Pendente.jsx';
 import Finalizadas from './assets/components/Comandas/Finalizadas/Finalizadas.jsx';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from './services/queryClient.js';
 
 const router = createBrowserRouter([
   {
@@ -38,23 +38,23 @@ const router = createBrowserRouter([
       },
       {
         path: "caixa",
-        element: <TelaCaixa/> 
+        element:  <Private> <TelaCaixa/> </Private> 
       },
       {
         path: "gerente",
-        element: <TelaGerente /> 
+        element: <Private> <TelaGerente /> </Private>
       },
       {
         path: "estoquista",
-        element: <TelaEstoquista/> 
+        element: <Private> <TelaEstoquista/> </Private>
       },
       {
         path: "funcionarios",
-        element: <Funcionarios/> 
+        element: <Private> <Funcionarios/> </Private>
       },
       {
         path: "clientes",
-        element:<TelaClientes/>
+        element: <Private> <TelaClientes/> </Private>
       },
       {
         path: "comandas",
@@ -81,7 +81,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './CustomModal.css';
 
 const CustomModal = ({ isOpen, onClose, children }) => {
-  
   if (!isOpen) {
     return null;
   }
