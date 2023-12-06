@@ -5,7 +5,7 @@ import { funcionariosServices } from '../services/funcionariosServices';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { schemaRegisterPassword } from '../schemas/schemaFuncionarios';
 
-export const useSenhaFuncionario = () => {
+export const useSenhaFuncionario = (onClose) => {
   const { registerPasswordFuncionario } = funcionariosServices();
   const funcionarioEdit = useFuncionarioStore((state) => state.funcionarioEdit);
   const {
@@ -26,6 +26,7 @@ export const useSenhaFuncionario = () => {
   const handleForm = (data) => {
     try {
       mutateAsync(data);
+      onClose();
     } catch (error) {
       console.log(error);
     }

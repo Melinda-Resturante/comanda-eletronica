@@ -3,9 +3,7 @@ import CustomModal from '../../components/Custom/CustomModal/CustomModal';
 
 const SenhaModal = ({ isOpen, onClose, onSave, children }) => {
   const { register, handleSubmit, handleForm, errors, error } =
-    useSenhaFuncionario();
-
-  console.log(error);
+    useSenhaFuncionario(onClose);
 
   return (
     <CustomModal isOpen={isOpen} onClose={onClose}>

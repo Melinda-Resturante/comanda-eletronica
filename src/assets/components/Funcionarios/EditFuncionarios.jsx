@@ -1,4 +1,4 @@
-import useEditFuncionario from '../../../hooks/useEditFuncionario';
+import { useEditFuncionario } from '../../../hooks/useEditFuncionario';
 
 function EditFuncionarios({ onClose }) {
   const { handleSubmit, handleForm, register, errors } =

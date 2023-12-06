@@ -7,7 +7,7 @@ import {
 } from '../schemas/schemaFuncionarios';
 import { funcionariosServices } from '../services/funcionariosServices';
 
-const useAddFuncionarios = (isClose) => {
+export const useAddFuncionarios = (isClose) => {
   const {
     register,
     handleSubmit,
@@ -45,5 +45,3 @@ const useAddFuncionarios = (isClose) => {
     errors,
   };
 };
-
-export default useAddFuncionarios;

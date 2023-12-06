@@ -1,7 +1,7 @@
-.home-section{
+.home-section {
   position: relative;
   background: var(--bg-color);
-/*   height: 100vh;  */
+  height: 100ic;
   left: 260px;
 
   width: calc(100% - 260px);
@@ -9,7 +9,7 @@
   padding-left: 30px;
 }
 
-.sidebar.close ~ .home-section{
+.sidebar.close ~ .home-section {
   left: 78px;
   width: calc(100% - 78px);
 }

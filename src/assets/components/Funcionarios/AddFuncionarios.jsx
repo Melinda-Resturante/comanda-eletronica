@@ -1,4 +1,4 @@
-import useAddFuncionarios from '../../../hooks/useAddFuncionarios';
+import { useAddFuncionarios } from '../../../hooks/useAddFuncionarios';
 
 function AddFuncionarios({ isClose }) {
   const { register, handleSubmit, handleForm, errors } =

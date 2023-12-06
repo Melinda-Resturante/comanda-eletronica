@@ -9,7 +9,7 @@ import {
 } from '../schemas/schemaFuncionarios';
 import useFuncionarioStore from '../store/funcionario';
 
-const useEditFuncionario = (onClose) => {
+export const useEditFuncionario = (onClose) => {
   const funcionarioEdit = useFuncionarioStore((state) => state.funcionarioEdit);
   const { editFuncionario } = funcionariosServices();
 
@@ -53,5 +53,3 @@ const useEditFuncionario = (onClose) => {
     handleForm,
   };
 };
-
-export default useEditFuncionario;
