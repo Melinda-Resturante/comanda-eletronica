@@ -73,12 +73,12 @@ function Sidebar() {
       </li>
 
       <li>
-        <a href="#">
+        <a href="/caixa">
         <i className='bx bxs-food-menu'></i>
-          <span className="link_name">Delivery</span>
+          <span className="link_name">Caixa</span>
         </a>
         <ul className='sub-menu blank'>
-          <li><a className='link_name' href="#">Delivery</a></li>
+          <li><a className='link_name' href="#">Caixa</a></li>
         </ul>
       </li>
 
